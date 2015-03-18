@@ -42,8 +42,8 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>C:\Users\Alex\Documents\CEGEP\Session 8\Intégration de techniques nouvelles\zeMaze\zeMaze\SDL-CLG\include;C:\Users\Alex\Documents\CEGEP\Session 8\Intégration de techniques nouvelles\zeMaze\zeMaze\FMOD Programmers API Windows\api\inc;$(IncludePath)</IncludePath>
-    <LibraryPath>C:\Users\Alex\Documents\CEGEP\Session 8\Intégration de techniques nouvelles\zeMaze\zeMaze\SDL-CLG\lib;C:\Users\Alex\Documents\CEGEP\Session 8\Intégration de techniques nouvelles\zeMaze\zeMaze\FMOD Programmers API Windows\api\lib;$(LibraryPath)</LibraryPath>
+    <IncludePath>$(ProjectDir)\SDL-CLG\include;$(ProjectDir)\FMOD Programmers API Windows\api\inc;$(IncludePath)</IncludePath>
+    <LibraryPath>$(ProjectDir)\SDL-CLG\lib;$(ProjectDir)\FMOD Programmers API Windows\api\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
