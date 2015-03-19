@@ -84,12 +84,42 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\..\..\Session 3\KA0\TP Synthèse\TP Synthèse\AffichageFond.cpp" />
+    <ClCompile Include="..\..\..\..\Session 3\KA0\TP Synthèse\TP Synthèse\FonctionDeVerification.cpp" />
+    <ClCompile Include="..\..\..\..\Session 3\KA0\TP Synthèse\TP Synthèse\FonctionEnnemi.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="sdlclg.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\..\..\Session 3\KA0\TP Synthèse\TP Synthèse\AffichageFond.h" />
+    <ClInclude Include="..\..\..\..\Session 3\KA0\TP Synthèse\TP Synthèse\constante.h" />
+    <ClInclude Include="..\..\..\..\Session 3\KA0\TP Synthèse\TP Synthèse\FonctionDeVerification.h" />
+    <ClInclude Include="..\..\..\..\Session 3\KA0\TP Synthèse\TP Synthèse\FonctionEnnemi.h" />
     <ClInclude Include="fmod.h" />
     <ClInclude Include="sdlclg.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="..\..\..\..\Session 3\KA0\TP Synthèse\TP Synthèse\bomb.bmp" />
+    <Image Include="..\..\..\..\Session 3\KA0\TP Synthèse\TP Synthèse\champi.bmp" />
+    <Image Include="..\..\..\..\Session 3\KA0\TP Synthèse\TP Synthèse\Fond.bmp" />
+    <Image Include="..\..\..\..\Session 3\KA0\TP Synthèse\TP Synthèse\fondmario.bmp" />
+    <Image Include="..\..\..\..\Session 3\KA0\TP Synthèse\TP Synthèse\gagne.bmp" />
+    <Image Include="..\..\..\..\Session 3\KA0\TP Synthèse\TP Synthèse\koopa.bmp" />
+    <Image Include="..\..\..\..\Session 3\KA0\TP Synthèse\TP Synthèse\mario_bas.bmp" />
+    <Image Include="..\..\..\..\Session 3\KA0\TP Synthèse\TP Synthèse\mur.bmp" />
+    <Image Include="..\..\..\..\Session 3\KA0\TP Synthèse\TP Synthèse\perdu.bmp" />
+    <Image Include="..\..\..\..\Session 3\KA0\TP Synthèse\TP Synthèse\sou.bmp" />
+    <Image Include="..\..\..\..\Session 3\KA0\TP Synthèse\TP Synthèse\Title.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Media Include="..\..\..\..\Session 3\KA0\TP Synthèse\TP Synthèse\8bit.mp3" />
+    <Media Include="..\..\..\..\Session 3\KA0\TP Synthèse\TP Synthèse\coin.wav" />
+    <Media Include="..\..\..\..\Session 3\KA0\TP Synthèse\TP Synthèse\over.mp3" />
+    <Media Include="..\..\..\..\Session 3\KA0\TP Synthèse\TP Synthèse\start.wav" />
+    <Media Include="..\..\..\..\Session 3\KA0\TP Synthèse\TP Synthèse\theme.mp3" />
+    <Media Include="..\..\..\..\Session 3\KA0\TP Synthèse\TP Synthèse\theme2.mp3" />
+    <Media Include="..\..\..\..\Session 3\KA0\TP Synthèse\TP Synthèse\titre.mp3" />
+    <Media Include="..\..\..\..\Session 3\KA0\TP Synthèse\TP Synthèse\victoire.mp3" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
