@@ -26,9 +26,6 @@ int main(int argc, char *argv[])
 	int mario = ChargerImage("mario_bas.bmp");
 	int mur = ChargerImage("mur.bmp");                                  //Chargement des images en mémoire
 	int sou = ChargerImage("sou.bmp");
-	int koopa = ChargerImage("koopa.bmp");
-	int goomba = ChargerImage("champi.bmp");
-	int bomb = ChargerImage("bomb.bmp");
 	int gagne = ChargerImage("gagne.bmp");
 	int perdu = ChargerImage("perdu.bmp");
 
@@ -58,23 +55,13 @@ int main(int argc, char *argv[])
 	sound1->release();
 	system->playSound(FMOD_CHANNEL_FREE, sound6, false, 0);
 
+	
 	PlacerObject(Grille, NbMur, mur);
-	PlacerObject(Grille, NbSou, sou);                               //Appel a la fonction pour placer les murs et les sous
+	//PlacerObject(Grille, NbSou, sou);                               //Appel a la fonction pour placer les murs et les sous
 
 	Position Mario;
 	Mario = InitialiserPositionPersonnage(Grille, mur);
 	string ConditionMario = "Vivant";                                  //Déclaration et initialisation de la position des personnages
-
-	Position Koopa;
-	Koopa = InitialiserPositionPersonnage(Grille, mur);
-	string DirectionKoopa = "Droite";
-
-	Position Goomba;
-	Goomba = InitialiserPositionPersonnage(Grille, mur);
-	string DirectionGoomba = "Droite";
-
-	Position Bomb;
-	Bomb = InitialiserPositionPersonnage(Grille, mur);
 
 	SDL_EnableKeyRepeat(100, 100);                     //Lorsqu'on appuie sur une touche pendant un certain delai, l'action se répete plusieur fois
 
@@ -83,7 +70,7 @@ int main(int argc, char *argv[])
 	do
 	{
 
-		Afficher(Grille, fond, mur, sou, mario, koopa, goomba, bomb, Mario, Koopa, Goomba, Bomb);
+		Afficher(Grille, fond, mur, sou, mario, Mario);
 
 		string ConditionHaut = "Aucune";
 		string ConditionBas = "Aucune";
@@ -98,12 +85,6 @@ int main(int argc, char *argv[])
 		{
 			system->playSound(FMOD_CHANNEL_FREE, sound5, false, 0);    //Jouer un son lorsque Mario ramasse un sou
 		}
-
-
-		AnimationKoopa(Grille, mur, Koopa, DirectionKoopa);             //Appel des fonctions d'Animation des ennemis
-		AnimationGoomba(Grille, mur, Goomba, DirectionGoomba);
-		AnimationBomb(Grille, mur, Mario, Bomb);
-
 
 		e = AttendreEvenement();                                        //Attendre que l'usager appuie sur une touche.
 
@@ -131,14 +112,12 @@ int main(int argc, char *argv[])
 			Mario.x -= 1;
 		}
 
-		VerifierConditionMario(Mario, Koopa, Goomba, Bomb, ConditionMario);
-
 	} while (e != EVQuitter && CompteurDeSou != NbSou && ConditionMario == "Vivant");            //Boucle d'animation
 
 	SDL_EnableKeyRepeat(0, 0);                  //Désactivation de la répétition des touches (remise à 0)
 	sound2->release();
 
-	Afficher(Grille, fond, mur, sou, mario, koopa, goomba, bomb, Mario, Koopa, Goomba, Bomb);
+	Afficher(Grille, fond, mur, sou, mario, Mario);
 
 	if (ConditionMario != "Vivant")
 	{

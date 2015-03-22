@@ -99,12 +99,9 @@
     <ClInclude Include="sdlclg.h" />
   </ItemGroup>
   <ItemGroup>
-    <Image Include="..\..\..\..\Session 3\KA0\TP Synthèse\TP Synthèse\bomb.bmp" />
-    <Image Include="..\..\..\..\Session 3\KA0\TP Synthèse\TP Synthèse\champi.bmp" />
     <Image Include="..\..\..\..\Session 3\KA0\TP Synthèse\TP Synthèse\Fond.bmp" />
     <Image Include="..\..\..\..\Session 3\KA0\TP Synthèse\TP Synthèse\fondmario.bmp" />
     <Image Include="..\..\..\..\Session 3\KA0\TP Synthèse\TP Synthèse\gagne.bmp" />
-    <Image Include="..\..\..\..\Session 3\KA0\TP Synthèse\TP Synthèse\koopa.bmp" />
     <Image Include="..\..\..\..\Session 3\KA0\TP Synthèse\TP Synthèse\mario_bas.bmp" />
     <Image Include="..\..\..\..\Session 3\KA0\TP Synthèse\TP Synthèse\mur.bmp" />
     <Image Include="..\..\..\..\Session 3\KA0\TP Synthèse\TP Synthèse\perdu.bmp" />

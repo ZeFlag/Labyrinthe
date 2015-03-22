@@ -1,8 +1,7 @@
 #include "AffichageFond.h"
 
 
-void Afficher(Ligne Grille[],int fond, int mur, int sou, int mario, int koopa, int goomba, int bomb, 
-Position Mario, Position Koopa, Position Goomba, Position Bomb)
+void Afficher(Ligne Grille[],int fond, int mur, int sou, int mario, Position Mario)
 {
 	AfficherImage(fond, 0, 0);
 	AfficherObject(Grille, NbMur, mur);
