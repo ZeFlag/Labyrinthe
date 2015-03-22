@@ -7,7 +7,6 @@
 #include "constante.h"
 #include "AffichageFond.h"
 #include "FonctionDeVerification.h"
-#include "FonctionEnnemi.h"
 using namespace std;
 
 int main(int argc, char *argv[])
@@ -35,7 +34,7 @@ int main(int argc, char *argv[])
 	system->init(32, FMOD_INIT_NORMAL, 0);                                                 //initialiser FMOD
 
 	system->createSound("../zeMaze/titre.mp3", FMOD_HARDWARE, 0, &sound1);
-	system->createSound("../zeMaze/theme2.mp3", FMOD_HARDWARE, 0, &sound2);
+	system->createSound("../zeMaze/theme.mp3", FMOD_HARDWARE, 0, &sound2);
 	system->createSound("../zeMaze/victoire.mp3", FMOD_HARDWARE, 0, &sound3);        //Charger les sons
 	system->createSound("../zeMaze/over.mp3", FMOD_HARDWARE, 0, &sound4);
 	system->createSound("../zeMaze/coin.wav", FMOD_HARDWARE, 0, &sound5);
@@ -54,8 +53,9 @@ int main(int argc, char *argv[])
 	sound1->release();
 	system->playSound(FMOD_CHANNEL_FREE, sound6, false, 0);
 
+	//TODO: appeler la fonction GenererMaze de "AffichageFond" ici
 	PlacerObject(Grille, NbMur, mur);
-	//PlacerObject(Grille, NbSou, sou);                               //Appel a la fonction pour placer les murs et les sous
+	//PlacerObject(Grille, NbSou, sou);                               //Appel a la fonction pour placer les sous
 
 	Position Mario;
 	Mario = InitialiserPositionPersonnage(Grille, mur);
