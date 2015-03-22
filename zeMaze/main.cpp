@@ -10,7 +10,6 @@
 #include "FonctionEnnemi.h"
 using namespace std;
 
-
 int main(int argc, char *argv[])
 {
 	srand(static_cast<unsigned int>(time(0)));
@@ -23,7 +22,7 @@ int main(int argc, char *argv[])
 
 	int title = ChargerImage("Title.bmp");
 	int fond = ChargerImage("fond.bmp");
-	int mario = ChargerImage("mario_bas.bmp");
+	int mario = ChargerImage("indiana.bmp");
 	int mur = ChargerImage("mur.bmp");                                  //Chargement des images en mémoire
 	int sou = ChargerImage("sou.bmp");
 	int gagne = ChargerImage("gagne.bmp");
@@ -35,12 +34,12 @@ int main(int argc, char *argv[])
 	FMOD::System_Create(&system);
 	system->init(32, FMOD_INIT_NORMAL, 0);                                                 //initialiser FMOD
 
-	system->createSound("../TP Synthèse/titre.mp3", FMOD_HARDWARE, 0, &sound1);
-	system->createSound("../TP Synthèse/theme2.mp3", FMOD_HARDWARE, 0, &sound2);
-	system->createSound("../TP Synthèse/victoire.mp3", FMOD_HARDWARE, 0, &sound3);        //Charger les sons
-	system->createSound("../TP Synthèse/over.mp3", FMOD_HARDWARE, 0, &sound4);
-	system->createSound("../TP Synthèse/coin.wav", FMOD_HARDWARE, 0, &sound5);
-	system->createSound("../TP Synthèse/start.wav", FMOD_HARDWARE, 0, &sound6);
+	system->createSound("../zeMaze/titre.mp3", FMOD_HARDWARE, 0, &sound1);
+	system->createSound("../zeMaze/theme2.mp3", FMOD_HARDWARE, 0, &sound2);
+	system->createSound("../zeMaze/victoire.mp3", FMOD_HARDWARE, 0, &sound3);        //Charger les sons
+	system->createSound("../zeMaze/over.mp3", FMOD_HARDWARE, 0, &sound4);
+	system->createSound("../zeMaze/coin.wav", FMOD_HARDWARE, 0, &sound5);
+	system->createSound("../zeMaze/start.wav", FMOD_HARDWARE, 0, &sound6);
 
 	system->playSound(FMOD_CHANNEL_FREE, sound1, false, 0);
 
@@ -55,7 +54,6 @@ int main(int argc, char *argv[])
 	sound1->release();
 	system->playSound(FMOD_CHANNEL_FREE, sound6, false, 0);
 
-	
 	PlacerObject(Grille, NbMur, mur);
 	//PlacerObject(Grille, NbSou, sou);                               //Appel a la fonction pour placer les murs et les sous
 

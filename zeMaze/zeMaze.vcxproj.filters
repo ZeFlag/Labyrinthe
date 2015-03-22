@@ -27,9 +27,6 @@
     <ClCompile Include="..\..\..\..\Session 3\KA0\TP Synthèse\TP Synthèse\FonctionDeVerification.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\Session 3\KA0\TP Synthèse\TP Synthèse\FonctionEnnemi.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="sdlclg.h">
@@ -47,15 +44,9 @@
     <ClInclude Include="..\..\..\..\Session 3\KA0\TP Synthèse\TP Synthèse\FonctionDeVerification.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\Session 3\KA0\TP Synthèse\TP Synthèse\FonctionEnnemi.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Image Include="..\..\..\..\Session 3\KA0\TP Synthèse\TP Synthèse\Fond.bmp">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="..\..\..\..\Session 3\KA0\TP Synthèse\TP Synthèse\fondmario.bmp">
       <Filter>Resource Files</Filter>
     </Image>
     <Image Include="..\..\..\..\Session 3\KA0\TP Synthèse\TP Synthèse\gagne.bmp">
@@ -74,6 +65,9 @@
       <Filter>Resource Files</Filter>
     </Image>
     <Image Include="..\..\..\..\Session 3\KA0\TP Synthèse\TP Synthèse\Title.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="indiana.bmp">
       <Filter>Resource Files</Filter>
     </Image>
   </ItemGroup>
