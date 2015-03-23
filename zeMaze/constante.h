@@ -2,8 +2,8 @@
 #define _Constante_h
 
 const int Vide = -1;
-const int NbMur = 50;
-const int NbSou = 20;
+const int NbMur = 18*18;
+const int NbSou = 2;
 const int NbCases = 18; 
 const int NbPixelsParCase = 32; 
 const int TailleImage = NbCases * NbPixelsParCase;
