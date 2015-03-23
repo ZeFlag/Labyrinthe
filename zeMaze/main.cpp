@@ -17,7 +17,7 @@ int main(int argc, char *argv[])
 
 	Ligne Grille[NbCases];                                                     //Déclaration de la grille de jeu.
 	InitialiserGrille(Grille);
-	InitialiserAffichage("Jeux Mario", TailleImage, TailleImage);              //Initialisation de la fenêtre
+	InitialiserAffichage("zeMaze", TailleImage, TailleImage);              //Initialisation de la fenêtre
 
 	int title = ChargerImage("Title.bmp");
 	int fond = ChargerImage("fond.bmp");
@@ -36,7 +36,7 @@ int main(int argc, char *argv[])
 	system->createSound("../zeMaze/menu.mp3", FMOD_HARDWARE, 0, &sound1);
 	system->createSound("../zeMaze/theme.mp3", FMOD_HARDWARE, 0, &sound2);
 	system->createSound("../zeMaze/victoire.mp3", FMOD_HARDWARE, 0, &sound3);        //Charger les sons
-	system->createSound("../zeMaze/over.mp3", FMOD_HARDWARE, 0, &sound4);
+	system->createSound("../zeMaze/perdu.mp3", FMOD_HARDWARE, 0, &sound4);
 	system->createSound("../zeMaze/pickup.mp3", FMOD_HARDWARE, 0, &sound5);
 	system->createSound("../zeMaze/start.wav", FMOD_HARDWARE, 0, &sound6);
 
@@ -54,7 +54,7 @@ int main(int argc, char *argv[])
 	system->playSound(FMOD_CHANNEL_FREE, sound6, false, 0);
 
 	GenererMaze(Grille, mur);
-	PlacerObject(Grille, NbSou, sou);                               //Appel a la fonction pour placer les sous
+	PlacerObject(Grille, NbTorches, sou);                               //Appel a la fonction pour placer les sous
 
 	Position Mario;
 	Mario = InitialiserPositionPersonnage(Grille, mur);
@@ -109,7 +109,7 @@ int main(int argc, char *argv[])
 			Mario.x -= 1;
 		}
 
-	} while (e != EVQuitter && CompteurDeSou != NbSou && ConditionMario == "Vivant");            //Boucle d'animation
+	} while (e != EVQuitter && CompteurDeSou != NbTorches && ConditionMario == "Vivant");            //Boucle d'animation
 
 	SDL_EnableKeyRepeat(0, 0);                  //Désactivation de la répétition des touches (remise à 0)
 	sound2->release();
@@ -124,7 +124,7 @@ int main(int argc, char *argv[])
 		Attendre(2000);
 	}
 
-	if (CompteurDeSou == NbSou)
+	if (CompteurDeSou == NbTorches)
 	{
 		system->playSound(FMOD_CHANNEL_FREE, sound3, false, 0);
 		AfficherImage(gagne, 120, 190);          //Si le compteur de sou égale au nombre sou tatal, afficher au joueur qu'il a gagné

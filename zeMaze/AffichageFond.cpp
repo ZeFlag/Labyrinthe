@@ -4,8 +4,8 @@
 void Afficher(Ligne Grille[], int fond, int mur, int sou, int mario, Position Mario)
 {
 	AfficherImage(fond, 0, 0);
-	AfficherObject(Grille, 18*18, mur);
-	AfficherObject(Grille, NbSou, sou);
+	AfficherObject(Grille, NbCases*NbCases, mur);
+	AfficherObject(Grille, NbTorches, sou);
 	AfficherImage(mario, Mario.x*NbPixelsParCase, Mario.y*NbPixelsParCase);  //Affichage de mario
 	RafraichirFenetre();
 }
