@@ -21,10 +21,10 @@
     <ClCompile Include="sdlclg.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\Session 3\KA0\TP Synthèse\TP Synthèse\AffichageFond.cpp">
+    <ClCompile Include="AffichageFond.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\Session 3\KA0\TP Synthèse\TP Synthèse\FonctionDeVerification.cpp">
+    <ClCompile Include="FonctionDeVerification.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -35,13 +35,13 @@
     <ClInclude Include="fmod.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\Session 3\KA0\TP Synthèse\TP Synthèse\AffichageFond.h">
+    <ClInclude Include="AffichageFond.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\Session 3\KA0\TP Synthèse\TP Synthèse\constante.h">
+    <ClInclude Include="constante.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\Session 3\KA0\TP Synthèse\TP Synthèse\FonctionDeVerification.h">
+    <ClInclude Include="FonctionDeVerification.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
