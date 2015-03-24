@@ -85,22 +85,20 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="AffichageFond.cpp" />
-    <ClCompile Include="Biere.cpp" />
     <ClCompile Include="FonctionDeVerification.cpp" />
-    <ClCompile Include="Item.cpp" />
+    <ClCompile Include="Indiana.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Personnage.cpp" />
     <ClCompile Include="sdlclg.cpp" />
-    <ClCompile Include="Torche.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AffichageFond.h" />
-    <ClInclude Include="Biere.h" />
     <ClInclude Include="constante.h" />
     <ClInclude Include="fmod.h" />
     <ClInclude Include="FonctionDeVerification.h" />
-    <ClInclude Include="Item.h" />
+    <ClInclude Include="Indiana.h" />
+    <ClInclude Include="Personnage.h" />
     <ClInclude Include="sdlclg.h" />
-    <ClInclude Include="Torche.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

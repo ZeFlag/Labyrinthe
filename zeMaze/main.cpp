@@ -15,15 +15,15 @@ int main(int argc, char *argv[])
 	int CompteurDeSou = 0;
 	Evenement e;
 
-	Ligne Grille[NbCases];                                                     //Déclaration de la grille de jeu.
+	Ligne Grille[NOMBRE_CASES];                                                     //Déclaration de la grille de jeu.
 	InitialiserGrille(Grille);
-	InitialiserAffichage("zeMaze", TailleImage, TailleImage);              //Initialisation de la fenêtre
+	InitialiserAffichage("zeMaze", TAILLE_IMAGE, TAILLE_IMAGE);              //Initialisation de la fenêtre
 
 	int title = ChargerImage("Title.bmp");
-	int fond = ChargerImage("fond.bmp");
+	int fond  =	ChargerImage("fond.bmp");
 	int mario = ChargerImage("indiana.bmp");
-	int mur = ChargerImage("mur.bmp");                                  //Chargement des images en mémoire
-	int sou = ChargerImage("torche.bmp");
+	int MUR = ChargerImage("mur.bmp");
+	int torche=	ChargerImage("torche.bmp");
 	int gagne = ChargerImage("gagne.bmp");
 	int perdu = ChargerImage("perdu.bmp");
 
@@ -53,11 +53,11 @@ int main(int argc, char *argv[])
 	sound1->release();
 	system->playSound(FMOD_CHANNEL_FREE, sound6, false, 0);
 
-	GenererMaze(Grille, mur);
-	PlacerObject(Grille, NbTorches, sou);                               //Appel a la fonction pour placer les sous
+	GenererMaze(Grille, MUR);
+	PlacerObject(Grille, NOMBRE_TORCHES, torche);                               //Appel a la fonction pour placer les sous
 
 	Position Mario;
-	Mario = InitialiserPositionPersonnage(Grille, mur);
+	Mario = InitialiserPositionPersonnage(Grille, MUR);
 	string ConditionMario = "Vivant";                                  //Déclaration et initialisation de la position des personnages
 
 	SDL_EnableKeyRepeat(100, 100);                     //Lorsqu'on appuie sur une touche pendant un certain delai, l'action se répete plusieur fois
@@ -66,8 +66,7 @@ int main(int argc, char *argv[])
 
 	do
 	{
-
-		Afficher(Grille, fond, mur, sou, mario, Mario);
+		Afficher(Grille, fond, MUR, torche, mario, Mario);
 
 		string ConditionHaut = "Aucune";
 		string ConditionBas = "Aucune";
@@ -76,7 +75,7 @@ int main(int argc, char *argv[])
 		string ConditionLimite = "Aucune";
 
 		int Temp = CompteurDeSou;
-		VerifierSou(Grille, sou, Mario, CompteurDeSou);
+		VerifierSou(Grille, torche, Mario, CompteurDeSou);
 
 		if (Temp != CompteurDeSou)
 		{
@@ -85,7 +84,7 @@ int main(int argc, char *argv[])
 
 		e = AttendreEvenement();                                        //Attendre que l'usager appuie sur une touche.
 
-		VerifierMur(Grille, mur, Mario, ConditionHaut, ConditionBas, ConditionGauche, ConditionDroite);
+		VerifierMur(Grille, MUR, Mario, ConditionHaut, ConditionBas, ConditionGauche, ConditionDroite);
 		VerifierLimiteJeu(Mario, ConditionLimite);
 
 
@@ -109,12 +108,12 @@ int main(int argc, char *argv[])
 			Mario.x -= 1;
 		}
 
-	} while (e != EVQuitter && CompteurDeSou != NbTorches && ConditionMario == "Vivant");            //Boucle d'animation
+	} while (e != EVQuitter && CompteurDeSou != NOMBRE_TORCHES && ConditionMario == "Vivant");            //Boucle d'animation
 
 	SDL_EnableKeyRepeat(0, 0);                  //Désactivation de la répétition des touches (remise à 0)
 	sound2->release();
 
-	Afficher(Grille, fond, mur, sou, mario, Mario);
+	Afficher(Grille, fond, MUR, torche, mario, Mario);
 
 	if (ConditionMario != "Vivant")
 	{
@@ -124,7 +123,7 @@ int main(int argc, char *argv[])
 		Attendre(2000);
 	}
 
-	if (CompteurDeSou == NbTorches)
+	if (CompteurDeSou == NOMBRE_TORCHES)
 	{
 		system->playSound(FMOD_CHANNEL_FREE, sound3, false, 0);
 		AfficherImage(gagne, 120, 190);          //Si le compteur de sou égale au nombre sou tatal, afficher au joueur qu'il a gagné

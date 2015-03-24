@@ -1,12 +1,12 @@
 #ifndef _Constante_h
 #define _Constante_h
 
-const int Vide = -1;
-const int NbTorches = 2;
-const int NbBieres = 3;
-const int NbCases = 18; 
-const int NbPixelsParCase = 32; 
-const int TailleImage = NbCases * NbPixelsParCase;
+const int CASE_VIDE = -1;
+const int NOMBRE_TORCHES = 2;
+const int NOMBRE_BIERES = 3;
+const int NOMBRE_CASES = 18; 
+const int NOMBRE_PIXELS_PAR_CASE = 32; 
+const int TAILLE_IMAGE = NOMBRE_CASES * NOMBRE_PIXELS_PAR_CASE;
 
 
 #endif _Constante_h
