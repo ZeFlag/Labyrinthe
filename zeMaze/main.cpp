@@ -21,11 +21,13 @@ int main(int argc, char *argv[])
 
 	int title = ChargerImage("Title.bmp");
 	int fond = ChargerImage("fond.bmp");
-	int mario = ChargerImage("indiana.bmp");
+	int personnage = ChargerImage("indiana.bmp");
 	int mur = ChargerImage("mur.bmp");                                  //Chargement des images en mémoire
-	int sou = ChargerImage("torche.bmp");
+	int torche = ChargerImage("torche.bmp");
+	int biere = ChargerImage("beer.bmp");
 	int gagne = ChargerImage("gagne.bmp");
 	int perdu = ChargerImage("perdu.bmp");
+	int porte = ChargerImage("door.bmp");
 
 	FMOD::System     *system;
 	FMOD::Sound      *sound1, *sound2, *sound3, *sound4, *sound5, *sound6;
@@ -54,10 +56,11 @@ int main(int argc, char *argv[])
 	system->playSound(FMOD_CHANNEL_FREE, sound6, false, 0);
 
 	GenererMaze(Grille, mur);
-	PlacerObject(Grille, NbTorches, sou);                               //Appel a la fonction pour placer les sous
+	PlacerObject(Grille, NbTorches, torche);                               //Appel a la fonction pour placer les sous
+	PlacerObject(Grille, NbBieres, biere);
 
-	Position Mario;
-	Mario = InitialiserPositionPersonnage(Grille, mur);
+	Position posPersonnage;
+	posPersonnage = InitialiserPositionPersonnage(Grille, mur);
 	string ConditionMario = "Vivant";                                  //Déclaration et initialisation de la position des personnages
 
 	SDL_EnableKeyRepeat(100, 100);                     //Lorsqu'on appuie sur une touche pendant un certain delai, l'action se répete plusieur fois
@@ -67,7 +70,7 @@ int main(int argc, char *argv[])
 	do
 	{
 
-		Afficher(Grille, fond, mur, sou, mario, Mario);
+		Afficher(Grille, fond, mur, torche, biere, personnage, posPersonnage);
 
 		string ConditionHaut = "Aucune";
 		string ConditionBas = "Aucune";
@@ -76,7 +79,7 @@ int main(int argc, char *argv[])
 		string ConditionLimite = "Aucune";
 
 		int Temp = CompteurDeSou;
-		VerifierSou(Grille, sou, Mario, CompteurDeSou);
+		VerifierSou(Grille, torche, posPersonnage, CompteurDeSou);
 
 		if (Temp != CompteurDeSou)
 		{
@@ -85,28 +88,28 @@ int main(int argc, char *argv[])
 
 		e = AttendreEvenement();                                        //Attendre que l'usager appuie sur une touche.
 
-		VerifierMur(Grille, mur, Mario, ConditionHaut, ConditionBas, ConditionGauche, ConditionDroite);
-		VerifierLimiteJeu(Mario, ConditionLimite);
+		VerifierMur(Grille, mur, posPersonnage, ConditionHaut, ConditionBas, ConditionGauche, ConditionDroite);
+		VerifierLimiteJeu(posPersonnage, ConditionLimite);
 
 
 		if (e == EVHaut && ConditionHaut != "HautImpossible" && ConditionLimite != "HautImpossible")
 		{
-			Mario.y -= 1;
+			posPersonnage.y -= 1;
 		}
 
 		if (e == EVBas && ConditionBas != "BasImpossible" && ConditionLimite != "BasImpossible")
 		{
-			Mario.y += 1;
+			posPersonnage.y += 1;
 		}
 
 		if (e == EVDroite && ConditionDroite != "DroiteImpossible" && ConditionLimite != "DroiteImpossible")
 		{
-			Mario.x += 1;
+			posPersonnage.x += 1;
 		}
 
 		if (e == EVGauche && ConditionGauche != "GaucheImpossible" && ConditionLimite != "GaucheImpossible")
 		{
-			Mario.x -= 1;
+			posPersonnage.x -= 1;
 		}
 
 	} while (e != EVQuitter && CompteurDeSou != NbTorches && ConditionMario == "Vivant");            //Boucle d'animation
@@ -114,14 +117,14 @@ int main(int argc, char *argv[])
 	SDL_EnableKeyRepeat(0, 0);                  //Désactivation de la répétition des touches (remise à 0)
 	sound2->release();
 
-	Afficher(Grille, fond, mur, sou, mario, Mario);
+	Afficher(Grille, fond, mur, torche, biere, personnage, posPersonnage);
 
 	if (ConditionMario != "Vivant")
 	{
 		system->playSound(FMOD_CHANNEL_FREE, sound4, false, 0);
 		AfficherImage(perdu, 120, 190);           //Si la condition de Mario n'est pas vivant, afficher au joueur qu'il a perdu
 		RafraichirFenetre();
-		Attendre(2000);
+		Attendre(7000);
 	}
 
 	if (CompteurDeSou == NbTorches)
@@ -129,7 +132,7 @@ int main(int argc, char *argv[])
 		system->playSound(FMOD_CHANNEL_FREE, sound3, false, 0);
 		AfficherImage(gagne, 120, 190);          //Si le compteur de sou égale au nombre sou tatal, afficher au joueur qu'il a gagné
 		RafraichirFenetre();
-		Attendre(4000);
+		Attendre(7000);
 	}
 
 	sound3->release();

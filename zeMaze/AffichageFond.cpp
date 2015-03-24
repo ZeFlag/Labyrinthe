@@ -1,11 +1,12 @@
 #include "AffichageFond.h"
 
 
-void Afficher(Ligne Grille[], int fond, int mur, int sou, int mario, Position Mario)
+void Afficher(Ligne Grille[], int fond, int mur, int torche, int biere, int mario, Position Mario)
 {
 	AfficherImage(fond, 0, 0);
 	AfficherObject(Grille, NbCases*NbCases, mur);
-	AfficherObject(Grille, NbTorches, sou);
+	AfficherObject(Grille, NbTorches, torche);
+	AfficherObject(Grille, NbBieres, biere);
 	AfficherImage(mario, Mario.x*NbPixelsParCase, Mario.y*NbPixelsParCase);  //Affichage de mario
 	RafraichirFenetre();
 }

@@ -27,15 +27,6 @@
     <ClCompile Include="FonctionDeVerification.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Item.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Biere.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Torche.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="sdlclg.h">
@@ -51,15 +42,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="FonctionDeVerification.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Item.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Biere.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Torche.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

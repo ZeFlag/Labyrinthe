@@ -24,7 +24,7 @@ struct Ligne
 //But: Affichage du fond, des murs, des sous, des ennemis et de Mario.
 //Intrants: La grille de jeu, l'ImageId du fond, des murs, des sous, des ennemis et de Mario, ainsi que leur position.
 //Extrants: Aucun
-void Afficher(Ligne Grille[], int fond, int mur, int sou, int mario, Position Mario);
+void Afficher(Ligne Grille[], int fond, int mur, int torche, int biere, int mario, Position Mario);
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //Nom: InitialiserGrille
