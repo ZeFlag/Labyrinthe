@@ -22,9 +22,9 @@ struct Ligne
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //Nom: Afficher
 //But: Affichage du fond, des murs, des sous, des ennemis et de Mario.
-//Intrants: La grille de jeu, l'ImageId du fond, des murs, des sous, des ennemis et de Mario, ainsi que leur position.
+//Intrants: La grille de jeu, l'ImageId du fond, des murs, de la porte, des objets, ainsi que leur position.
 //Extrants: Aucun
-void Afficher(Ligne Grille[], int fond, int mur, int porte, int torche, int biere, int mario, Position Mario);
+void Afficher(Ligne Grille[], int fond, int mur, int porte, int torche, int biere, int mario, Position Personnage);
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //Nom: InitialiserGrille
@@ -45,7 +45,7 @@ void GenererMaze(Ligne Grille[], int ImageId);
 //But: Placer la porte
 //Intrants: La grille de jeu et l'imageId de l'image
 //Extrants: Aucun
-void PlacerPorte(Ligne Grille[], int ImageId);
+void PlacerPorte(Ligne Grille[], int ImageId, Position Personnage);
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //Nom: PlacerObject

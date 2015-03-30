@@ -56,13 +56,15 @@ int main(int argc, char *argv[])
 	system->playSound(FMOD_CHANNEL_FREE, sound6, false, 0);
 
 	GenererMaze(Grille, mur);
-	PlacerPorte(Grille, porte);
-	PlacerObject(Grille, NbTorches, torche);                               //Appel a la fonction pour placer les sous
+	
+	PlacerObject(Grille, NbTorches, torche);                               //Appel a la fonction pour placer les items
 	PlacerObject(Grille, NbBieres, biere);
 
 	Position posPersonnage;
 	posPersonnage = InitialiserPositionPersonnage(Grille, mur);
 	string ConditionMario = "Vivant";                                  //Déclaration et initialisation de la position des personnages
+
+	PlacerPorte(Grille, porte, posPersonnage);
 
 	SDL_EnableKeyRepeat(100, 100);                     //Lorsqu'on appuie sur une touche pendant un certain delai, l'action se répete plusieur fois
 
@@ -81,6 +83,7 @@ int main(int argc, char *argv[])
 
 		int Temp = CompteurDeSou;
 		VerifierSou(Grille, torche, posPersonnage, CompteurDeSou);
+		VerifierPorte(Grille, porte, posPersonnage);
 
 		if (Temp != CompteurDeSou)
 		{
