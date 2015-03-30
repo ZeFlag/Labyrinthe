@@ -96,8 +96,7 @@
     <ClInclude Include="constante.h" />
     <ClInclude Include="fmod.h" />
     <ClInclude Include="FonctionDeVerification.h" />
-    <ClInclude Include="Indiana.h" />
-    <ClInclude Include="Personnage.h" />
+    <ClInclude Include="Item.h" />
     <ClInclude Include="sdlclg.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

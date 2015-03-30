@@ -1,12 +1,14 @@
 #include "AffichageFond.h"
 
 
-void Afficher(Ligne Grille[], int fond, int mur, int sou, int mario, Position Mario)
+void Afficher(Ligne Grille[], int fond, int mur, int porte, int torche, int biere, int mario, Position Mario)
 {
 	AfficherImage(fond, 0, 0);
-	AfficherObject(Grille, NOMBRE_CASES*NOMBRE_CASES, mur);
-	AfficherObject(Grille, NOMBRE_TORCHES, sou);
-	AfficherImage(mario, Mario.x*NOMBRE_PIXELS_PAR_CASE, Mario.y*NOMBRE_PIXELS_PAR_CASE);  //Affichage de mario
+	AfficherObject(Grille, NbCases*NbCases, mur);
+	AfficherObject(Grille, 1, porte);
+	AfficherObject(Grille, NbTorches, torche);
+	AfficherObject(Grille, NbBieres, biere);
+	AfficherImage(mario, Mario.x*NbPixelsParCase, Mario.y*NbPixelsParCase);  //Affichage de mario
 	RafraichirFenetre();
 }
 
@@ -109,6 +111,21 @@ void GenererMaze(Ligne Grille[], int ImageId)
 		if (maze[y][x] == false)
 			Grille[y].Colonne[x] = ImageId;
 		}
+}
+
+void PlacerPorte(Ligne Grille[], int ImageId)
+{
+	int i, j = -1;
+
+	do 
+	{
+		i = rand() % NbCases;
+		j = rand() % NbCases;
+
+	} while ((Grille[i].Colonne[j] == Vide));
+
+		
+	Grille[i].Colonne[j] = ImageId;
 }
 
 void PlacerObject(Ligne Grille[], int NbObject, int ImageId)
