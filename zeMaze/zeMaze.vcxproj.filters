@@ -27,6 +27,12 @@
     <ClCompile Include="FonctionDeVerification.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Personnage.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Indiana.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="sdlclg.h">
@@ -42,6 +48,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="FonctionDeVerification.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Personnage.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Indiana.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -15,11 +15,11 @@ void Afficher(Ligne Grille[], int fond, int mur, int porte, int torche, int bier
 
 void InitialiserGrille(Ligne Grille[])
 {
-	for (int i = 0; i < NbCases; i++)
+	for (int i = 0; i < NOMBRE_CASES; i++)
 	{                                                     //Initialise la grille de jeu à vide.
-		for (int j = 0; j < NbCases; j++)
+		for (int j = 0; j < NOMBRE_CASES; j++)
 		{
-			Grille[i].Colonne[j] = Vide;
+			Grille[i].Colonne[j] = CASE_VIDE;
 		}
 	}
 }
@@ -132,10 +132,10 @@ void PlacerObject(Ligne Grille[], int NbObject, int ImageId)
 {
 	for (int Cpt = 0; Cpt < NbObject; Cpt++)
 	{
-		int i = rand() % NbCases;
-		int j = rand() % NbCases;
+		int i = rand() % NOMBRE_CASES;
+		int j = rand() % NOMBRE_CASES;
 
-		if (Grille[i].Colonne[j] == Vide)
+		if (Grille[i].Colonne[j] == CASE_VIDE)
 		{
 			Grille[i].Colonne[j] = ImageId;
 		}
@@ -148,13 +148,13 @@ void PlacerObject(Ligne Grille[], int NbObject, int ImageId)
 
 void AfficherObject(Ligne Grille[], int NbObject, int ImageId)
 {
-	for (int i = 0; i < NbCases; i++)
+	for (int i = 0; i < NOMBRE_CASES; i++)
 	{
-		for (int j = 0; j < NbCases; j++)
+		for (int j = 0; j < NOMBRE_CASES; j++)
 		{
 			if (Grille[i].Colonne[j] == ImageId)
 			{
-				AfficherImage(ImageId, i*NbPixelsParCase, j*NbPixelsParCase);
+				AfficherImage(ImageId, i*NOMBRE_PIXELS_PAR_CASE, j*NOMBRE_PIXELS_PAR_CASE);
 			}
 		}
 	}

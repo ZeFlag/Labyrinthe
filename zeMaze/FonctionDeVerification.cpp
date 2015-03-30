@@ -12,9 +12,9 @@ Position InitialiserPositionPersonnage(Ligne Grille[], int Mur)
 	Personnage.x=rand()%18;
 	Personnage.y=rand()%18;
 
-	for(int i=0;i<NbCases;i++)
+	for(int i=0;i<NOMBRE_CASES;i++)
 	{
-		for(int j=0;j<NbCases;j++)
+		for(int j=0;j<NOMBRE_CASES;j++)
 		{
 			if(Grille[Personnage.x].Colonne[Personnage.y]==Mur)                    //Définition de la fonction VerifierSou
 			{
@@ -28,13 +28,13 @@ Position InitialiserPositionPersonnage(Ligne Grille[], int Mur)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void VerifierSou(Ligne Grille[], int Sou, Position Mario, int& CompteurDeSou)
 {
-	for(int i=0;i<NbCases;i++)
+	for(int i=0;i<NOMBRE_CASES;i++)
 	{
-		for(int j=0;j<NbCases;j++)
+		for(int j=0;j<NOMBRE_CASES;j++)
 		{
 			if(Grille[Mario.x].Colonne[Mario.y]==Sou)                    //Définition de la fonction VerifierSou
 			{
-				Grille[Mario.x].Colonne[Mario.y]=Vide;
+				Grille[Mario.x].Colonne[Mario.y]=CASE_VIDE;
 				CompteurDeSou++;
 			}
 		}
@@ -43,9 +43,9 @@ void VerifierSou(Ligne Grille[], int Sou, Position Mario, int& CompteurDeSou)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void VerifierMur(Ligne Grille[], int Mur, Position Mario, string& ConditionHaut, string& ConditionBas, string& ConditionGauche, string& ConditionDroite)
 {
-	for(int i=0;i<NbCases;i++)
+	for(int i=0;i<NOMBRE_CASES;i++)
 	{
-		for(int j=0;j<NbCases;j++)
+		for(int j=0;j<NOMBRE_CASES;j++)
 		{
 			if(Grille[Mario.x+1].Colonne[Mario.y]==Mur)                    
 			{

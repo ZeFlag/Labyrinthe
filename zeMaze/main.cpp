@@ -15,9 +15,9 @@ int main(int argc, char *argv[])
 	int CompteurDeSou = 0;
 	Evenement e;
 
-	Ligne Grille[NbCases];                                                     //Déclaration de la grille de jeu.
+	Ligne Grille[NOMBRE_CASES];                                                     //Déclaration de la grille de jeu.
 	InitialiserGrille(Grille);
-	InitialiserAffichage("zeMaze", TailleImage, TailleImage);              //Initialisation de la fenêtre
+	InitialiserAffichage("zeMaze", TAILLE_IMAGE, TAILLE_IMAGE);              //Initialisation de la fenêtre
 
 	int title = ChargerImage("Title.bmp");
 	int fond = ChargerImage("fond.bmp");
@@ -116,7 +116,7 @@ int main(int argc, char *argv[])
 			posPersonnage.x -= 1;
 		}
 
-	} while (e != EVQuitter && CompteurDeSou != NbTorches && ConditionMario == "Vivant");            //Boucle d'animation
+	} while (e != EVQuitter && CompteurDeSou != NOMBRE_TORCHES && ConditionMario == "Vivant");            //Boucle d'animation
 
 	SDL_EnableKeyRepeat(0, 0);                  //Désactivation de la répétition des touches (remise à 0)
 	sound2->release();
@@ -131,7 +131,7 @@ int main(int argc, char *argv[])
 		Attendre(7000);
 	}
 
-	if (CompteurDeSou == NbTorches)
+	if (CompteurDeSou == NOMBRE_TORCHES)
 	{
 		system->playSound(FMOD_CHANNEL_FREE, sound3, false, 0);
 		AfficherImage(gagne, 120, 190);          //Si le compteur de sou égale au nombre sou tatal, afficher au joueur qu'il a gagné

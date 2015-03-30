@@ -86,7 +86,9 @@
   <ItemGroup>
     <ClCompile Include="AffichageFond.cpp" />
     <ClCompile Include="FonctionDeVerification.cpp" />
+    <ClCompile Include="Indiana.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Personnage.cpp" />
     <ClCompile Include="sdlclg.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -94,6 +96,7 @@
     <ClInclude Include="constante.h" />
     <ClInclude Include="fmod.h" />
     <ClInclude Include="FonctionDeVerification.h" />
+    <ClInclude Include="Item.h" />
     <ClInclude Include="sdlclg.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
