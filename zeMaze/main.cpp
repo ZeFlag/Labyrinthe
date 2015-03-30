@@ -57,8 +57,8 @@ int main(int argc, char *argv[])
 
 	GenererMaze(Grille, mur);
 	
-	PlacerObject(Grille, NbTorches, torche);                               //Appel a la fonction pour placer les items
-	PlacerObject(Grille, NbBieres, biere);
+	PlacerObject(Grille, NOMBRE_TORCHES, torche);                               //Appel a la fonction pour placer les items
+	PlacerObject(Grille, NOMBRE_BIERES, biere);
 
 	Position posPersonnage;
 	posPersonnage = InitialiserPositionPersonnage(Grille, mur);
@@ -83,7 +83,6 @@ int main(int argc, char *argv[])
 
 		int Temp = CompteurDeSou;
 		VerifierSou(Grille, torche, posPersonnage, CompteurDeSou);
-		VerifierPorte(Grille, porte, posPersonnage);
 
 		if (Temp != CompteurDeSou)
 		{

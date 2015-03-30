@@ -1,11 +1,12 @@
 #pragma once
 
 #include "sdlclg.h";
+#include "constante.h"
 
 struct Position
-{ 
-	int x; 
-	int y; 
+{
+	int x;
+	int y;
 };
 
 enum Condition
@@ -15,7 +16,7 @@ enum Condition
 
 class Personnage
 {
-protected: 
+protected:
 	Position position;
 	int visibilite;
 public:
@@ -26,7 +27,6 @@ public:
 	virtual void paint(int image);
 	virtual void loadImage(string image);
 protected:
-	Condition verifieConditionDeplacement(Position p);
-	bool isInsideLimits(Po)
+	bool verifieConditionDeplacement(Position p);
+	bool isInsideLimits(Position p);
 };
-

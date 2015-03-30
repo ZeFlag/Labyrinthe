@@ -4,11 +4,11 @@
 void Afficher(Ligne Grille[], int fond, int mur, int porte, int torche, int biere, int mario, Position Personnage)
 {
 	AfficherImage(fond, 0, 0);
-	AfficherObject(Grille, NbCases*NbCases, mur);
+	AfficherObject(Grille, NOMBRE_CASES*NOMBRE_CASES, mur);
 	AfficherObject(Grille, 1, porte);
-	AfficherObject(Grille, NbTorches, torche);
-	AfficherObject(Grille, NbBieres, biere);
-	AfficherImage(mario, Personnage.x*NbPixelsParCase, Personnage.y*NbPixelsParCase);  //Affichage du personnage
+	AfficherObject(Grille, NOMBRE_TORCHES, torche);
+	AfficherObject(Grille, NOMBRE_BIERES, biere);
+	AfficherImage(mario, Personnage.x*NOMBRE_PIXELS_PAR_CASE, Personnage.y*NOMBRE_PIXELS_PAR_CASE);  //Affichage du personnage
 	RafraichirFenetre();
 }
 
@@ -119,10 +119,10 @@ void PlacerPorte(Ligne Grille[], int ImageId, Position Personnage)
 
 	do 
 	{
-		i = rand() % NbCases;
-		j = rand() % NbCases;
+		i = rand() % NOMBRE_CASES;
+		j = rand() % NOMBRE_CASES;
 
-	} while ((Grille[i].Colonne[j] == Vide)); //TODO: Ajouter condition pour un écart minimum...
+	} while ((Grille[i].Colonne[j] == CASE_VIDE)); //TODO: Ajouter condition pour un écart minimum...
 
 		
 	Grille[i].Colonne[j] = ImageId;

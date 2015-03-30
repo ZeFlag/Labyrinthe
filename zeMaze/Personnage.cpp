@@ -13,7 +13,7 @@ Personnage::~Personnage()
 void Personnage::move(Evenement e) { return; }
 void Personnage::paint(int image){ return; }
 void Personnage::loadImage(string image) { return; }
-	
+
 bool Personnage::verifieConditionDeplacement(Position p)
 {
 	//return Grille[p.x].Colonne[p.y] != MUR && isInsideLimits(p);
