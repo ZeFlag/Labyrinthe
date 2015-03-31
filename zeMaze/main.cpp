@@ -126,7 +126,6 @@ int main(int argc, char *argv[])
 		}
 			
 		victoire = VerifierSortie(Grille, porte, posPersonnage);		//Vérifie si le personnage a trouvé la sortie
-
 	} 
 
 	SDL_EnableKeyRepeat(0, 0);                  //Désactivation de la répétition des touches (remise à 0)
