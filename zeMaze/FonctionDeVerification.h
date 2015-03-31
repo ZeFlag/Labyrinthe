@@ -7,10 +7,10 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //Nom: InitialiserPositionPersonnage.
-//But: Sert a initialiser la postion des personnages (ennemis+Mario) au hasard en vérifiant qu'il n'y ait pas de mur.
+//But: Sert a initialiser la postion du personnage au hasard en vérifiant qu'il n'y ait pas de mur.
 //Intrants: la grille de jeu, l'imageId des murs.
 //Extrants: la position du personnage concerné.
-Position InitialiserPositionPersonnage(Ligne Grille[], int Mur);
+Position InitialiserPositionPersonnage(Ligne Grille[], int imageMurId);
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -31,16 +31,16 @@ bool VerifierSortie(Ligne Grille[], int imageId, Position Personnage);
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //Nom: VerifierMur.
-//But: Verifier s'il y a un mur autour de Mario. Si oui, contraindre son déplacement.
-//Intrants: La grille de jeu, l'imageId des murs, la position de Mario et les conditions de déplacements de Mario.
+//But: Verifier s'il y a un mur autour du Personnage. Si oui, contraindre son déplacement.
+//Intrants: La grille de jeu, l'imageId des murs, la position du Personnage et les conditions de déplacements de ce Personnage.
 //Extrants: Aucun
 void VerifierMur(Ligne Grille[], int Mur, Position Mario, string& ConditionHaut, string& ConditionBas, string& ConditionGauche, string& ConditionDroite);
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //Nom: VerifierLimiteJeu
-//But: Verifier si Mario est proche des limites de la grille de jeu. Si oui, contraindre ses mouvements.
-//Intrants: Position Personnage, la condition des limites de Mario.
+//But: Verifier si le Personnage est proche des limites de la grille de jeu. Si oui, contraindre ses mouvements.
+//Intrants: Position du Personnage, la condition des limites de Mario.
 //Extrants: Aucun
 void VerifierLimiteJeu(Position Personnage, string& ConditionLimite);
 
