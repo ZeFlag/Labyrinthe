@@ -12,7 +12,8 @@ using namespace std;
 int main(int argc, char *argv[])
 {
 	srand(static_cast<unsigned int>(time(0)));
-	int CompteurDeSou = 0;
+	int CompteurPas = NOMBRE_PAS_MAX;
+	bool victoire = false;
 	Evenement e;
 
 	Ligne Grille[NOMBRE_CASES];                                                     //Déclaration de la grille de jeu.
@@ -55,7 +56,7 @@ int main(int argc, char *argv[])
 	sound1->release();
 	system->playSound(FMOD_CHANNEL_FREE, sound6, false, 0);
 
-	GenererMaze(Grille, mur);
+	GenererMaze(Grille, mur);											//Génère le labyrinthe aléatoirement
 	
 	PlacerObject(Grille, NOMBRE_TORCHES, torche);                               //Appel a la fonction pour placer les items
 	PlacerObject(Grille, NOMBRE_BIERES, biere);
@@ -70,9 +71,8 @@ int main(int argc, char *argv[])
 
 	system->playSound(FMOD_CHANNEL_FREE, sound2, false, 0);
 
-	do
+	while (e != EVQuitter && !victoire && CompteurPas != 0)            //Boucle d'animation
 	{
-
 		Afficher(Grille, fond, mur, porte, torche, biere, personnage, posPersonnage);
 
 		string ConditionHaut = "Aucune";
@@ -81,59 +81,71 @@ int main(int argc, char *argv[])
 		string ConditionDroite = "Aucune";
 		string ConditionLimite = "Aucune";
 
-		int Temp = CompteurDeSou;
-		VerifierSou(Grille, torche, posPersonnage, CompteurDeSou);
-
-		if (Temp != CompteurDeSou)
-		{
-			system->playSound(FMOD_CHANNEL_FREE, sound5, false, 0);    //Jouer un son lorsque Mario ramasse un sou
-		}
-
 		e = AttendreEvenement();                                        //Attendre que l'usager appuie sur une touche.
 
 		VerifierMur(Grille, mur, posPersonnage, ConditionHaut, ConditionBas, ConditionGauche, ConditionDroite);
 		VerifierLimiteJeu(posPersonnage, ConditionLimite);
 
-
 		if (e == EVHaut && ConditionHaut != "HautImpossible" && ConditionLimite != "HautImpossible")
 		{
 			posPersonnage.y -= 1;
+			--CompteurPas;
 		}
 
 		if (e == EVBas && ConditionBas != "BasImpossible" && ConditionLimite != "BasImpossible")
 		{
 			posPersonnage.y += 1;
+			--CompteurPas;
 		}
 
 		if (e == EVDroite && ConditionDroite != "DroiteImpossible" && ConditionLimite != "DroiteImpossible")
 		{
 			posPersonnage.x += 1;
+			--CompteurPas;
 		}
 
 		if (e == EVGauche && ConditionGauche != "GaucheImpossible" && ConditionLimite != "GaucheImpossible")
 		{
 			posPersonnage.x -= 1;
+			--CompteurPas;
 		}
 
-	} while (e != EVQuitter && CompteurDeSou != NOMBRE_TORCHES && ConditionMario == "Vivant");            //Boucle d'animation
+
+		if (VerifierObjetRamasser(Grille, torche, posPersonnage))  //Vérifie si une torche est a ramasser
+		{
+			system->playSound(FMOD_CHANNEL_FREE, sound5, false, 0);
+
+			//TODO: Augmenter le champ de vision...
+		}
+			
+		if (VerifierObjetRamasser(Grille, biere, posPersonnage)) //Vérifie si une bière est a ramasser
+		{
+			system->playSound(FMOD_CHANNEL_FREE, sound5, false, 0);    
+
+			CompteurPas += 10;
+		}
+			
+		victoire = VerifierSortie(Grille, porte, posPersonnage);		//Vérifie si le personnage a trouvé la sortie
+
+	} 
 
 	SDL_EnableKeyRepeat(0, 0);                  //Désactivation de la répétition des touches (remise à 0)
 	sound2->release();
 
 	Afficher(Grille, fond, mur, porte, torche, biere, personnage, posPersonnage);
 
-	if (ConditionMario != "Vivant")
+	if (CompteurPas == 0)				//Si le joueur a perdu...
 	{
 		system->playSound(FMOD_CHANNEL_FREE, sound4, false, 0);
-		AfficherImage(perdu, 120, 190);           //Si la condition de Mario n'est pas vivant, afficher au joueur qu'il a perdu
+		AfficherImage(perdu, 120, 190);           
 		RafraichirFenetre();
-		Attendre(7000);
+		Attendre(5000);
 	}
 
-	if (CompteurDeSou == NOMBRE_TORCHES)
+	if (victoire)					  //Si le joueur a gagner...
 	{
 		system->playSound(FMOD_CHANNEL_FREE, sound3, false, 0);
-		AfficherImage(gagne, 120, 190);          //Si le compteur de sou égale au nombre sou tatal, afficher au joueur qu'il a gagné
+		AfficherImage(gagne, 120, 190);          
 		RafraichirFenetre();
 		Attendre(7000);
 	}

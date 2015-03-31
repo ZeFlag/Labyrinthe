@@ -26,19 +26,22 @@ Position InitialiserPositionPersonnage(Ligne Grille[], int Mur)
 	return Personnage;
 }
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-void VerifierSou(Ligne Grille[], int Sou, Position Mario, int& CompteurDeSou)
+bool VerifierObjetRamasser(Ligne Grille[], int imageId, Position Personnage)
 {
-	for(int i=0;i<NOMBRE_CASES;i++)
+	if (Grille[Personnage.x].Colonne[Personnage.y] == imageId)                    
 	{
-		for(int j=0;j<NOMBRE_CASES;j++)
-		{
-			if(Grille[Mario.x].Colonne[Mario.y]==Sou)                    //Définition de la fonction VerifierSou
-			{
-				Grille[Mario.x].Colonne[Mario.y]=CASE_VIDE;
-				CompteurDeSou++;
-			}
-		}
+		Grille[Personnage.x].Colonne[Personnage.y] = CASE_VIDE;
+		return true;
 	}
+	return false;
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+bool VerifierSortie(Ligne Grille[], int imageId, Position Personnage)
+{
+	if (Grille[Personnage.x].Colonne[Personnage.y] == imageId)
+		return true;
+	return false;
 }
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void VerifierMur(Ligne Grille[], int Mur, Position Mario, string& ConditionHaut, string& ConditionBas, string& ConditionGauche, string& ConditionDroite)
@@ -90,23 +93,5 @@ void VerifierLimiteJeu(Position Personnage, string& ConditionLimite)
 	if(Personnage.y==17)                    
 	{
 		ConditionLimite="BasImpossible";
-	}
-}
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-void VerifierConditionMario(Position Mario, Position Koopa, Position Goomba, Position Bomb, string& ConditionMario)
-{
-	if(Mario.x == Koopa.x && Mario.y == Koopa.y)
-	{
-		ConditionMario="Mort";
-	}
-
-	if(Mario.x == Goomba.x && Mario.y == Goomba.y)
-	{
-		ConditionMario="Mort";
-	}
-
-	if(Mario.x == Bomb.x && Mario.y == Bomb.y)
-	{
-		ConditionMario="Mort";
 	}
 }

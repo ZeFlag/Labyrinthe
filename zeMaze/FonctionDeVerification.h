@@ -14,11 +14,19 @@ Position InitialiserPositionPersonnage(Ligne Grille[], int Mur);
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//Nom: VerifierSou.
-//But: Verifier s'il y a un sou en dessus de Mario. Si oui, le faire disparaitre et ajouter 1 sou au compteur.
-//Intrants: la grille de jeu, l'imageId des sous, la position de Mario, le compteur de sou.
-//Extrants: Aucun.
-void VerifierSou(Ligne Grille[], int Sou, Position Mario, int& CompteurDeSou);
+//Nom: VerifierObjetRamasser.
+//But: Verifier s'il y a un objet en dessus du Personnage. Si oui, le faire ramasser.
+//Intrants: la grille de jeu, l'imageId de l'objet, la position du personnage.
+//Extrants: variable bool.
+bool VerifierObjetRamasser(Ligne Grille[], int imageId, Position Personnage);
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//Nom: VerifierSortie.
+//But: Verifier si le personnage se trouve sur la sortie
+//Intrants: la grille de jeu, l'imageId des l'image qui sert de sortie, la position du personnage
+//Extrants: variable bool.
+bool VerifierSortie(Ligne Grille[], int imageId, Position Personnage);
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -35,13 +43,5 @@ void VerifierMur(Ligne Grille[], int Mur, Position Mario, string& ConditionHaut,
 //Intrants: Position Personnage, la condition des limites de Mario.
 //Extrants: Aucun
 void VerifierLimiteJeu(Position Personnage, string& ConditionLimite);
-
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//Nom: VerifierConditionMario
-//But: Verifier si mario touche a un ennemi. Si oui, il change sa condition a "Mort".
-//Intrants: la position de Mario, la position des ennemis et la condition de Mario
-//Extrants: Aucun
-void VerifierConditionMario(Position Mario, Position Koopa, Position Goomba, Position Bomb, string& ConditionMario);
 
 #endif _FonctionDeVerification_h
