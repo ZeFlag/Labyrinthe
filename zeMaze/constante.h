@@ -7,7 +7,7 @@ const int NOMBRE_TORCHES = 2;
 const int NOMBRE_BIERES = 3;
 const int NOMBRE_CASES = 18; 
 const int NOMBRE_PIXELS_PAR_CASE = 32; 
-const int NOMBRE_PAS_MAX = 20;
+const int NOMBRE_PAS_MAX = 60;
 const int TAILLE_IMAGE = NOMBRE_CASES * NOMBRE_PIXELS_PAR_CASE;
 
 #endif _Constante_h

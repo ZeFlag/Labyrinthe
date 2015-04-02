@@ -20,7 +20,7 @@ void PlacerPorte(Ligne Grille[], int ImageId, Position Personnage)
 		i = rand() % NOMBRE_CASES;
 		j = rand() % NOMBRE_CASES;
 
-	} while ((Grille[i].Colonne[j] == CASE_VIDE)); //TODO: Ajouter condition pour un écart minimum...
+	} while (Grille[i].Colonne[j] == CASE_VIDE); //TODO: Ajouter condition pour un écart minimum...
 
 		
 	Grille[i].Colonne[j] = ImageId;
@@ -44,18 +44,19 @@ void PlacerObject(Ligne Grille[], int NbObject, int ImageId)
 	}
 }
 
-void Afficher(Ligne Grille[], int fond, int mur, int porte, int torche, int biere, int personnage, Position Personnage)
+void Afficher(Ligne Grille[], int fond, int mur, int porte, int torche, int biere, int black, int personnage, Position Personnage)
 {
 	AfficherImage(fond, 0, 0);
-	AfficherObject(Grille, NOMBRE_CASES*NOMBRE_CASES, mur);
-	AfficherObject(Grille, 1, porte);
-	AfficherObject(Grille, NOMBRE_TORCHES, torche);
-	AfficherObject(Grille, NOMBRE_BIERES, biere);
+	AfficherObject(Grille, Personnage, mur);
+	AfficherObject(Grille, Personnage, porte);
+	AfficherObject(Grille, Personnage, torche);
+	AfficherObject(Grille, Personnage, biere);
+	AfficherChampVision(Grille, Personnage, black);
 	AfficherImage(personnage, Personnage.x*NOMBRE_PIXELS_PAR_CASE, Personnage.y*NOMBRE_PIXELS_PAR_CASE);  //Affichage du personnage
 	RafraichirFenetre();
 }
 
-void AfficherObject(Ligne Grille[], int NbObject, int ImageId)
+void AfficherObject(Ligne Grille[], Position Personnage, int ImageId)
 {
 	for (int i = 0; i < NOMBRE_CASES; i++)
 	{
@@ -64,6 +65,21 @@ void AfficherObject(Ligne Grille[], int NbObject, int ImageId)
 			if (Grille[i].Colonne[j] == ImageId)
 			{
 				AfficherImage(ImageId, i*NOMBRE_PIXELS_PAR_CASE, j*NOMBRE_PIXELS_PAR_CASE);
+			}
+		}
+	}
+}
+
+void AfficherChampVision(Ligne Grille[], Position Personnage, int ImageId)
+{
+	for (int x = 0; x < NOMBRE_CASES; x++)
+	{
+		for (int y = 0; y < NOMBRE_CASES; y++)
+		{
+			if (x >= Personnage.x + CHAMP_VISION || x <= Personnage.x - CHAMP_VISION 
+				|| y >= Personnage.y + CHAMP_VISION || y <= Personnage.y - CHAMP_VISION)
+			{
+				AfficherImage(ImageId, x*NOMBRE_PIXELS_PAR_CASE, y*NOMBRE_PIXELS_PAR_CASE);
 			}
 		}
 	}

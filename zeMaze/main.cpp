@@ -29,6 +29,8 @@ int main(int argc, char *argv[])
 	int gagne = ChargerImage("gagne.bmp");
 	int perdu = ChargerImage("perdu.bmp");
 	int porte = ChargerImage("door.bmp");
+	int black = ChargerImage("black.bmp");
+	
 
 	FMOD::System     *system;
 	FMOD::Sound      *sound1, *sound2, *sound3, *sound4, *sound5, *sound6;
@@ -73,7 +75,7 @@ int main(int argc, char *argv[])
 
 	while (e != EVQuitter && !victoire && CompteurPas != 0)            //Boucle d'animation
 	{
-		Afficher(Grille, fond, mur, porte, torche, biere, personnage, posPersonnage);
+		Afficher(Grille, fond, mur, porte, torche, biere, black, personnage, posPersonnage);
 
 		string ConditionHaut = "Aucune";
 		string ConditionBas = "Aucune";
@@ -115,23 +117,27 @@ int main(int argc, char *argv[])
 		{
 			system->playSound(FMOD_CHANNEL_FREE, sound5, false, 0);
 
-			//TODO: Augmenter le champ de vision...
+			//TODO: CHAMP_VISION += 3;
+			cout << "Champ de vison augmente!" << endl;
+
 		}
 			
 		if (VerifierObjetRamasser(Grille, biere, posPersonnage)) //Vérifie si une bière est a ramasser
 		{
 			system->playSound(FMOD_CHANNEL_FREE, sound5, false, 0);    
 
-			CompteurPas += 10;
+			CompteurPas += NOMBRE_PAS_MAX-20;
+			cout << "Nombre de pas augmente!" << endl;
 		}
 			
+		cout << "Pas restant: " << CompteurPas << endl;
 		victoire = VerifierSortie(Grille, porte, posPersonnage);		//Vérifie si le personnage a trouvé la sortie
 	} 
 
 	SDL_EnableKeyRepeat(0, 0);                  //Désactivation de la répétition des touches (remise à 0)
 	sound2->release();
 
-	Afficher(Grille, fond, mur, porte, torche, biere, personnage, posPersonnage);
+	Afficher(Grille, fond, mur, porte, torche, biere, black, personnage, posPersonnage);
 
 	if (CompteurPas == 0)				//Si le joueur a perdu...
 	{

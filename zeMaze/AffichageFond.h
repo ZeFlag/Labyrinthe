@@ -24,7 +24,7 @@ struct Ligne
 //But: Affichage du fond, des murs, des sous, des ennemis et de Mario.
 //Intrants: La grille de jeu, l'ImageId du fond, des murs, de la porte, des objets, ainsi que leur position.
 //Extrants: Aucun
-void Afficher(Ligne Grille[], int fond, int mur, int porte, int torche, int biere, int personnage, Position Personnage);
+void Afficher(Ligne Grille[], int fond, int mur, int porte, int torche, int biere, int black, int personnage, Position Personnage);
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //Nom: InitialiserGrille
@@ -32,13 +32,6 @@ void Afficher(Ligne Grille[], int fond, int mur, int porte, int torche, int bier
 //Intrants: La grille de jeu
 //Extrants: Aucun
 void InitialiserGrille(Ligne Grille[]);
-
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//Nom: GenererMaze
-//But: Génère un labyrinthe aléatoire
-//Intrants: La grille de jeu, et l'imageId de l'image
-//Extrants: Aucun
-void GenererMaze(Ligne Grille[], int ImageId);
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //Nom: PlacerPorte
@@ -57,8 +50,17 @@ void PlacerObject(Ligne Grille[], int NbObject, int ImageId);
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //Nom: AfficherObject
 //But: Afficher les objects a leur position respective
-//Intrants: La grille de jeu, le nombre d'objects a initialiser et l'imageId de l'image a afficher.
+//Intrants: La grille de jeu, et l'imageId de l'image a afficher.
 //Extrants: Aucun
-void AfficherObject(Ligne Grille[], int NbObject, int ImageId);
+void AfficherObject(Ligne Grille[], Position Personnage, int ImageId);
+
+void AfficherChampVision(Ligne Grille[], Position Personnage, int ImageId);
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//Nom: GenererMaze
+//But: Génère un labyrinthe aléatoire
+//Intrants: La grille de jeu, et l'imageId de l'image
+//Extrants: Aucun
+void GenererMaze(Ligne Grille[], int ImageId);
 
 #endif _AffichageFond_h
