@@ -21,16 +21,13 @@
     <ClCompile Include="sdlclg.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="AffichageFond.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="FonctionDeVerification.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Personnage.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Indiana.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Labyrinthe.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -41,13 +38,10 @@
     <ClInclude Include="fmod.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="AffichageFond.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="constante.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="FonctionDeVerification.h">
+    <ClInclude Include="Item.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Personnage.h">
@@ -56,5 +50,16 @@
     <ClInclude Include="Indiana.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Labyrinthe.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="resource.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="zeMaze.rc">
+      <Filter>Resource Files</Filter>
+    </ResourceCompile>
   </ItemGroup>
 </Project>

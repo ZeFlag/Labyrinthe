@@ -1,12 +1,8 @@
-#ifndef _Constante_h
-#define _Constante_h
+#pragma once
 
-const int CASE_VIDE = -1;
-const int NOMBRE_TORCHES = 2;
-const int NOMBRE_BIERES = 3;
-const int NOMBRE_CASES = 18; 
-const int NOMBRE_PIXELS_PAR_CASE = 32; 
-const int TAILLE_IMAGE = NOMBRE_CASES * NOMBRE_PIXELS_PAR_CASE;
-
-
-#endif _Constante_h
+const int EMPTY_CASE = -1;
+const int NB_TORCHS = 2;
+const int NB_BEERS = 3;
+const int NB_CASES = 18; 
+const int NB_PIXELS_CASE = 32; 
+const int SIZE_WINDOW = NB_CASES * NB_PIXELS_CASE;

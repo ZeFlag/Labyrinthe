@@ -2,12 +2,7 @@
 
 #include "sdlclg.h";
 #include "constante.h"
-
-struct Position
-{
-	int x;
-	int y;
-};
+#include "Labyrinthe.h"
 
 enum Condition
 {
@@ -17,15 +12,20 @@ enum Condition
 class Personnage
 {
 protected:
+	Labyrinthe zeLab;
 	Position position;
 	int visibilite;
 public:
-	Personnage();
-	~Personnage();
+	Personnage(){}
+	~Personnage(){}
 
 	virtual void move(Evenement e);
-	virtual void paint(int image);
-	virtual void loadImage(string image);
+
+	Position getPosition(){ return position; }
+	Position getStartPosition(ImageName imageName);
+
+	void setLabyrinthe(Labyrinthe l);
+	void setPosition(Position p){ position = p; }
 protected:
 	bool verifieConditionDeplacement(Position p);
 	bool isInsideLimits(Position p);

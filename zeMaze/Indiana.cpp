@@ -2,10 +2,11 @@
 #include "constante.h"
 
 
-Indiana::Indiana()
+Indiana::Indiana(Labyrinthe l)
 {
+	setLabyrinthe(l);
+	setPosition(getStartPosition(HERO));
 }
-
 
 Indiana::~Indiana()
 {
@@ -36,5 +37,3 @@ void Indiana::move(Evenement e)
 }
 
 void Indiana::pickUpItem(){}
-void Indiana::paint(int image){ return; }
-void Indiana::loadImage(string image) { return; }
