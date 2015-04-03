@@ -21,7 +21,6 @@ vector<FMOD::Sound*> buildSound(FMOD::System* system)
 	v.push_back(sound5);
 	v.push_back(sound6);
 
-	System_Create(&system);
 	system->init(32, FMOD_INIT_NORMAL, 0);
 
 	system->createSound("../zeMaze/menu.mp3", FMOD_HARDWARE, 0, &v.at(0));
@@ -56,13 +55,14 @@ int main(int argc, char *argv[])
 	srand(static_cast<unsigned int>(time(0)));
 	Evenement e; // ? a garder ?
 	//Initialisation du labyrinthe
-	Labyrinthe zeLab = Labyrinthe();
+	Labyrinthe zeLab;
 	//ouverture de la fenetre avec fond decran
 	InitialiserAffichage("zeMaze", SIZE_WINDOW, SIZE_WINDOW);
 	//initialisation de Indiana Jones
-	Indiana indianaJones = Indiana(zeLab);
+	Indiana indianaJones(zeLab);
 	//Initialisation des sounds
 	FMOD::System *system;
+	System_Create(&system);
 	vector<FMOD::Sound*> sounds = buildSound(system);
 	//Menu
 	zeLab.paintTitle();
@@ -100,14 +100,14 @@ int main(int argc, char *argv[])
 	if (ConditionMario != "Vivant")
 	{
 		playSound(system, sounds.at(3));
-		AfficherImage(zeLab.getImages.at(LOSS), 120, 190);
+		AfficherImage(zeLab.getImages().at(LOSS), 120, 190);
 		RafraichirFenetre();
 		Attendre(7000);
 	} 
 	else if (CompteurDeSou == NB_TORCHS)
 	{
 		playSound(system, sounds.at(2));
-		AfficherImage(zeLab.getImages.at(WIN), 120, 190);
+		AfficherImage(zeLab.getImages().at(WIN), 120, 190);
 		RafraichirFenetre();
 		Attendre(7000);
 	}

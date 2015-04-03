@@ -4,7 +4,7 @@ void Personnage::move(Evenement e) { return; }
 
 bool Personnage::verifieConditionDeplacement(Position p)
 {
-	return zeLab.getGrille()[p.x].column[p.y] != zeLab.getImages.at(WALL) && isInsideLimits(p);
+	return zeLab.getGrille()[p.x].column[p.y] != zeLab.getImages().at(WALL) && isInsideLimits(p);
 }
 
 bool Personnage::isInsideLimits(Position p)
@@ -19,10 +19,10 @@ void Personnage::setLabyrinthe(Labyrinthe l)
 
 Position Personnage::getStartPosition(ImageName imageName)
 {
-	Position p;
+	Position p = { 0,0 };
 	for (Line line : zeLab.getGrille()){
 		for (ImageId imageId : line.column){
-			if (imageId == zeLab.getImages.at(imageName))
+			if (imageId == zeLab.getImages().at(imageName))
 				return p;
 				++p.y;
 		}
