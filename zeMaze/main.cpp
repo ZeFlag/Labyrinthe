@@ -85,7 +85,6 @@ int main(int argc, char *argv[])
 	{
 		zeLab.repaint();
 		int Temp = CompteurDeSou;
-		VerifierSou(zeLab.getGrille(), torche, indianaJones.getPosition(), CompteurDeSou);
 
 		if (Temp != CompteurDeSou)
 		{
