@@ -75,7 +75,7 @@ void Labyrinthe::InitDoor()
 	grille[i].column[j] = images.at(DOOR);
 }
 
-void Labyrinthe::PutObject(int nbObject, int imageId)
+void Labyrinthe::PutObject(int nbObject, ImageId imageId)
 {
 	int cpt = 0;
 	while (cpt < nbObject)
@@ -101,7 +101,7 @@ void Labyrinthe::InitCaracters()
 	grille[Personnage.x].column[Personnage.y] = images.at(HERO);
 }
 
-void Labyrinthe::GenererMaze(int imageId)
+void Labyrinthe::GenererMaze(ImageId imageId)
 {
 	srand(time(0));
 
@@ -186,4 +186,18 @@ void Labyrinthe::GenererMaze(int imageId)
 		for (size_t x = 0; x < maze_size_x; x++)
 			if (maze[y][x] == false)
 				grille[y].column[x] = imageId;
+}
+
+const Labyrinthe & Labyrinthe::operator=(Labyrinthe &newLab){
+	if (this != &newLab){
+		Copy(newLab);
+	}
+	return *this;
+}
+
+void Labyrinthe::Copy(Labyrinthe &newLab){
+	images = newLab.images;
+	for (size_t i = 0; i < NB_CASES; i++)
+		for (size_t j = 0; j < NB_CASES; j++)
+			grille[i].column[j] = newLab.getGrille()[i].column[j];
 }

@@ -22,6 +22,14 @@ struct Position
 {
 	int x;
 	int y;
+
+	const Position & Position::operator = (Position &newPosition){
+		if (this != &newPosition){
+			x = newPosition.x;
+			y = newPosition.y;
+		}
+		return *this;
+	}
 };
 
 typedef map<ImageName, ImageId> Map;
@@ -32,11 +40,11 @@ private:
 	Map images;
 	vector<Line> grille = vector<Line>(NB_CASES);
 
-	void GenererMaze(int imageId);
+	void GenererMaze(ImageId imageId);
 	void InitObjects();
 	void InitCaracters();
 	void InitDoor();
-	void PutObject(int nbObject, int imageId);
+	void PutObject(int nbObject, ImageId imageId);
 	void loadImages();
 	void paintObjects() const;
 public:
@@ -48,5 +56,8 @@ public:
 	void repaint() const;
 
 	Map getImages() const { return images; }
-	vector<Line> getGrille() const { return grille; };
+	vector<Line> getGrille() { return grille; };
+
+	const Labyrinthe & operator=(Labyrinthe &newLab);
+	void Copy(Labyrinthe &newLab);
 };

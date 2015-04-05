@@ -10,7 +10,7 @@ public:
 	Indiana(Labyrinthe l);
 	~Indiana();
 
-	void move(Evenement e);
-	void pickUpItem();
+	bool move(Evenement e);
+	bool pickUpItem();
 };
 

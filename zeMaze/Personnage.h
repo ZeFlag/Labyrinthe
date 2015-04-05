@@ -19,7 +19,7 @@ public:
 	Personnage(){}
 	~Personnage(){}
 
-	virtual void move(Evenement e);
+	virtual bool move(Evenement e);
 
 	Position getPosition(){ return position; }
 	Position getStartPosition(ImageName imageName);

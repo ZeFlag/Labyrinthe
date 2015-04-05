@@ -12,9 +12,9 @@ Indiana::~Indiana()
 {
 }
 
-void Indiana::move(Evenement e)
+bool Indiana::move(Evenement e)
 {
-	;
+	bool leave = false;
 	switch (e)
 	{
 	case EVHaut:
@@ -33,7 +33,19 @@ void Indiana::move(Evenement e)
 		if (verifieConditionDeplacement({ position.x + 1, position.y }))
 			++position.x;
 		break;
+	case EVQuitter:
+		leave = true;
+		break;
 	}
+	return leave;
 }
 
-void Indiana::pickUpItem(){}
+bool Indiana::pickUpItem()	//Todo
+{ 
+	//verifier si la case ou il est est une torch ou une biere
+	//si cest une biere augmenter le nombre de pas
+	//return true;
+	//si cest une torch augmenter le champ de vision
+	//return true;
+	return false; 
+}

@@ -1,6 +1,6 @@
 #include "Personnage.h"
 
-void Personnage::move(Evenement e) { return; }
+bool Personnage::move(Evenement e) { return false; }
 
 bool Personnage::verifieConditionDeplacement(Position p)
 {
@@ -24,8 +24,9 @@ Position Personnage::getStartPosition(ImageName imageName)
 		for (ImageId imageId : line.column){
 			if (imageId == zeLab.getImages().at(imageName))
 				return p;
-				++p.y;
+			++p.y;
 		}
 		++p.x;
 	}
+	return p;
 }

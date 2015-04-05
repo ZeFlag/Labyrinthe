@@ -51,7 +51,6 @@ int main(int argc, char *argv[])
 {
 	int CompteurDeSou = 0;
 
-
 	srand(static_cast<unsigned int>(time(0)));
 	Evenement e; // ? a garder ?
 	//Initialisation du labyrinthe
@@ -66,53 +65,22 @@ int main(int argc, char *argv[])
 	vector<FMOD::Sound*> sounds = buildSound(system);
 	//Menu
 	zeLab.paintTitle();
-	do
-	{   
-		e = AttendreEvenement();
-	} while (e != EVEspace);
-
+	while (AttendreEvenement() != EVEspace);
 	playSound(system, sounds.at(5));
 	//affiche le decors
 	zeLab.paint();
-
-	string ConditionMario = "Vivant";
-
 	SDL_EnableKeyRepeat(100, 100);
-
 	playSound(system, sounds.at(1));
-
 	do
 	{
 		zeLab.repaint();
-		int Temp = CompteurDeSou;
-
-		if (Temp != CompteurDeSou)
-		{
+		if (indianaJones.pickUpItem())
 			playSound(system, sounds.at(4));
-		}
-
-		indianaJones.move(AttendreEvenement());
-
-	} while (e != EVQuitter && CompteurDeSou != NB_TORCHS && ConditionMario == "Vivant"); 
+	} while (indianaJones.move(AttendreEvenement()) && CompteurDeSou != NB_TORCHS);
 	//Désactivation de la répétition des touches (remise à 0)
 	SDL_EnableKeyRepeat(0, 0);                  
 
-	if (ConditionMario != "Vivant")
-	{
-		playSound(system, sounds.at(3));
-		AfficherImage(zeLab.getImages().at(LOSS), 120, 190);
-		RafraichirFenetre();
-		Attendre(7000);
-	} 
-	else if (CompteurDeSou == NB_TORCHS)
-	{
-		playSound(system, sounds.at(2));
-		AfficherImage(zeLab.getImages().at(WIN), 120, 190);
-		RafraichirFenetre();
-		Attendre(7000);
-	}
-
 	releaseSound(system, sounds);               
 
-	return 0;
+	return;
 }
