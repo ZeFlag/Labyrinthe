@@ -14,6 +14,7 @@ Indiana::~Indiana()
 
 bool Indiana::move(Evenement e)
 {
+	Position oldPosition = position;
 	bool leave = false;
 	switch (e)
 	{
@@ -37,6 +38,7 @@ bool Indiana::move(Evenement e)
 		leave = true;
 		break;
 	}
+	zeLab->moveCaracter(HERO, position, oldPosition);
 	return leave;
 }
 

@@ -77,7 +77,7 @@ int main(int argc, char *argv[])
 		zeLab.repaint();
 		if (indianaJones.pickUpItem())
 			playSound(system, sounds.at(4));
-	} while (indianaJones.move(AttendreEvenement()) && CompteurDeSou != NB_TORCHS);
+	} while (!indianaJones.move(AttendreEvenement()) && CompteurDeSou != NB_TORCHS);
 	//Désactivation de la répétition des touches (remise à 0)
 	SDL_EnableKeyRepeat(0, 0);      
 	sounds.at(1)->release();    

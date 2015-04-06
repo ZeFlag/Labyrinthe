@@ -56,7 +56,9 @@ public:
 	void repaint() const;
 
 	Map getImages() const { return images; }
-	vector<Line> getGrille() const { return grille; };
+	vector<Line> getGrille() { return grille; };
+
+	void moveCaracter(const ImageName& name, const Position& p, const Position& oldPos);
 
 	const Labyrinthe & operator=(Labyrinthe &newLab);
 	void Copy(Labyrinthe &newLab);

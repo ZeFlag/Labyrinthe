@@ -12,6 +12,7 @@ Labyrinthe::Labyrinthe()
 	loadImages();
 	GenererMaze(images.at(WALL));
 	InitObjects();
+	InitCaracters();
 	InitDoor();
 }
 
@@ -40,8 +41,9 @@ void Labyrinthe::repaint() const { paint(); }
 
 void Labyrinthe::paintObjects() const
 {
-	auto i = 0, j = 0;
+	auto i = 0;
 	for (Line line : grille){
+		auto j = 0;
 		for (ImageId _case : line.column){
 			if (_case != EMPTY_CASE)
 				AfficherImage(_case, i*NB_PIXELS_CASE, j*NB_PIXELS_CASE);
@@ -106,6 +108,12 @@ void Labyrinthe::InitCaracters()
 		Personnage.y = rand() % NB_CASES;
 	} while (grille[Personnage.x].column[Personnage.y] != EMPTY_CASE);
 	grille[Personnage.x].column[Personnage.y] = images.at(HERO);
+}
+
+void Labyrinthe::moveCaracter(const ImageName& name, const Position& p, const Position& oldPos)
+{
+	grille[oldPos.x].column[oldPos.y] = EMPTY_CASE;
+	grille[p.x].column[p.y] = images.at(name);
 }
 
 void Labyrinthe::GenererMaze(ImageId imageId)
