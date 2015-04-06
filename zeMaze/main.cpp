@@ -43,7 +43,6 @@ int main(int argc, char *argv[])
 	int CompteurDeSou = 0;
 
 	srand(static_cast<unsigned int>(time(0)));
-	Evenement e; // ? a garder ?
 	//Initialisation du labyrinthe
 	Labyrinthe zeLab;
 	//ouverture de la fenetre avec fond decran
