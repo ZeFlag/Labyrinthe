@@ -80,7 +80,10 @@ int main(int argc, char *argv[])
 	} while (indianaJones.move(AttendreEvenement()) && CompteurDeSou != NB_TORCHS);
 	//Désactivation de la répétition des touches (remise à 0)
 	SDL_EnableKeyRepeat(0, 0);      
-	sounds.at(1)->release();             
+	sounds.at(1)->release();    
+
+	for (size_t i = 2; i < 5; i++)
+		sounds.at(i)->release();
 
 	return 0;
 }
