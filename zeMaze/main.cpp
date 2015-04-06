@@ -30,8 +30,6 @@ vector<FMOD::Sound*> buildSound(FMOD::System* system)
 	system->createSound("../zeMaze/pickup.mp3", FMOD_HARDWARE, 0, &v.at(4));
 	system->createSound("../zeMaze/start.wav", FMOD_HARDWARE, 0, &v.at(5));
 
-	system->playSound(FMOD_CHANNEL_FREE, sound1, false, 0);
-
 	return v;
 }
 
@@ -63,10 +61,13 @@ int main(int argc, char *argv[])
 	FMOD::System *system;
 	System_Create(&system);
 	vector<FMOD::Sound*> sounds = buildSound(system);
+	playSound(system, sounds.at(0));
 	//Menu
 	zeLab.paintTitle();
 	while (AttendreEvenement() != EVEspace);
+	sounds.at(0)->release();
 	playSound(system, sounds.at(5));
+	sounds.at(5)->release();
 	//affiche le decors
 	zeLab.paint();
 	SDL_EnableKeyRepeat(100, 100);
@@ -78,9 +79,8 @@ int main(int argc, char *argv[])
 			playSound(system, sounds.at(4));
 	} while (indianaJones.move(AttendreEvenement()) && CompteurDeSou != NB_TORCHS);
 	//Désactivation de la répétition des touches (remise à 0)
-	SDL_EnableKeyRepeat(0, 0);                  
+	SDL_EnableKeyRepeat(0, 0);      
+	sounds.at(1)->release();             
 
-	releaseSound(system, sounds);               
-
-	return;
+	return 0;
 }

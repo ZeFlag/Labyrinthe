@@ -2,7 +2,7 @@
 #include "constante.h"
 
 
-Indiana::Indiana(Labyrinthe l)
+Indiana::Indiana(Labyrinthe& l)
 {
 	setLabyrinthe(l);
 	setPosition(getStartPosition(HERO));

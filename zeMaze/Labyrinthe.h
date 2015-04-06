@@ -10,7 +10,7 @@
 
 struct Line
 {
-	vector<ImageId> column = vector<ImageId>(NB_CASES);
+	vector<ImageId> column;
 };
 
 enum ImageName
@@ -23,7 +23,7 @@ struct Position
 	int x;
 	int y;
 
-	const Position & Position::operator = (Position &newPosition){
+	const Position & Position::operator = (const Position &newPosition){
 		if (this != &newPosition){
 			x = newPosition.x;
 			y = newPosition.y;
@@ -38,7 +38,7 @@ class Labyrinthe
 {
 private:
 	Map images;
-	vector<Line> grille = vector<Line>(NB_CASES);
+	vector<Line> grille;
 
 	void GenererMaze(ImageId imageId);
 	void InitObjects();
@@ -56,7 +56,7 @@ public:
 	void repaint() const;
 
 	Map getImages() const { return images; }
-	vector<Line> getGrille() { return grille; };
+	vector<Line> getGrille() const { return grille; };
 
 	const Labyrinthe & operator=(Labyrinthe &newLab);
 	void Copy(Labyrinthe &newLab);

@@ -7,7 +7,7 @@ class Indiana :
 {
 	int nombre_pas;
 public:
-	Indiana(Labyrinthe l);
+	Indiana(Labyrinthe& l);
 	~Indiana();
 
 	bool move(Evenement e);

@@ -2,7 +2,13 @@
 
 Labyrinthe::Labyrinthe()
 {
-	fill(begin(grille), end(grille), EMPTY_CASE);
+	for (size_t i = 0; i < NB_CASES; i++)
+	{
+		Line line;
+		for (size_t j = 0; j < NB_CASES; j++)
+			line.column.push_back(EMPTY_CASE);
+		grille.push_back(line);
+	}
 	loadImages();
 	GenererMaze(images.at(WALL));
 	InitObjects();
@@ -37,7 +43,8 @@ void Labyrinthe::paintObjects() const
 	auto i = 0, j = 0;
 	for (Line line : grille){
 		for (ImageId _case : line.column){
-			AfficherImage(_case, i*NB_PIXELS_CASE, j*NB_PIXELS_CASE);
+			if (_case != EMPTY_CASE)
+				AfficherImage(_case, i*NB_PIXELS_CASE, j*NB_PIXELS_CASE);
 			++j;
 		}
 		++i;

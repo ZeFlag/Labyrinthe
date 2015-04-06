@@ -12,7 +12,7 @@ enum Condition
 class Personnage
 {
 protected:
-	Labyrinthe zeLab;
+	Labyrinthe* zeLab;
 	Position position;
 	int visibilite;
 public:
@@ -21,12 +21,12 @@ public:
 
 	virtual bool move(Evenement e);
 
-	Position getPosition(){ return position; }
-	Position getStartPosition(ImageName imageName);
+	Position getPosition() const { return position; }
+	Position getStartPosition(const ImageName& imageName) const;
 
-	void setLabyrinthe(Labyrinthe l);
-	void setPosition(Position p){ position = p; }
+	void setLabyrinthe(Labyrinthe& l);
+	void setPosition(const Position& p){ position = p; }
 protected:
-	bool verifieConditionDeplacement(Position p);
-	bool isInsideLimits(Position p);
+	bool verifieConditionDeplacement(const Position& p) const;
+	bool isInsideLimits(const Position& p) const;
 };
