@@ -9,7 +9,7 @@
 #include "Labyrinthe.h"
 using namespace std;
 
-vector<FMOD::Sound*> buildSound(FMOD::System* system)
+vector<FMOD::Sound*> loadSound(FMOD::System* system)
 {
 	using namespace FMOD;
 	Sound *sound1, *sound2, *sound3, *sound4, *sound5, *sound6;
@@ -38,13 +38,6 @@ void playSound(FMOD::System* system,FMOD::Sound* sound)
 	system->playSound(FMOD_CHANNEL_FREE, sound, false, 0);
 }
 
-void releaseSound(FMOD::System* system, vector<FMOD::Sound*> sounds){
-	for (FMOD::Sound* sound : sounds)
-		sound->release();
-	system->close();
-	system->release();
-}
-
 int main(int argc, char *argv[])
 {
 	int CompteurDeSou = 0;
@@ -60,7 +53,7 @@ int main(int argc, char *argv[])
 	//Initialisation des sounds
 	FMOD::System *system;
 	System_Create(&system);
-	vector<FMOD::Sound*> sounds = buildSound(system);
+	vector<FMOD::Sound*> sounds = loadSound(system);
 	playSound(system, sounds.at(0));
 	//Menu
 	zeLab.paintTitle();
@@ -84,6 +77,9 @@ int main(int argc, char *argv[])
 
 	for (size_t i = 2; i < 5; i++)
 		sounds.at(i)->release();
+
+	system->close();
+	system->release();
 
 	return 0;
 }
