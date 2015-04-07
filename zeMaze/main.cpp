@@ -76,6 +76,7 @@ int main(int argc, char *argv[])
 	do
 	{
 		zeLab.repaint();
+		indianaJones.showVision();
 		if (pickUp)
 			playSound(system, sounds.at(4));
 	} while (!indianaJones.move(AttendreEvenement(), pickUp));

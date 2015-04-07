@@ -11,6 +11,7 @@ public:
 	~Indiana();
 
 	bool move(Evenement e, bool& pickUp);
+	void showVision();
 	bool pickUpItem();
 };
 

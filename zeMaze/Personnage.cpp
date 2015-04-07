@@ -1,6 +1,6 @@
 #include "Personnage.h"
 
-bool Personnage::move(Evenement e) { return false; }
+bool Personnage::move(Evenement e) { return true; }
 
 bool Personnage::verifieConditionDeplacement(const Position& p) const
 {

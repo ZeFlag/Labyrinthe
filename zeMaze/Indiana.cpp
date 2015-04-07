@@ -52,3 +52,12 @@ bool Indiana::pickUpItem()
 	//return true;
 	return false; 
 }
+
+void Indiana::showVision()
+{
+	for (size_t x = 0; x < zeLab->getGrille().size; ++x)
+		for (size_t y = 0; y < zeLab->getGrille()[x].column.size; ++y)
+			if (x >= position.x + VISION || x <= position.x - VISION ||
+				y >= position.y + VISION || y <= position.y - VISION)
+				AfficherImage(zeLab->getImages().at(BLACK), x*NB_PIXELS_CASE, y*NB_PIXELS_CASE);
+}
