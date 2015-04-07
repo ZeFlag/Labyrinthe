@@ -2,18 +2,20 @@
 #include "constante.h"
 
 
-Indiana::Indiana()
+Indiana::Indiana(Labyrinthe& l)
 {
+	setLabyrinthe(l);
+	setPosition(getStartPosition(HERO));
 }
-
 
 Indiana::~Indiana()
 {
 }
 
-void Indiana::move(Evenement e)
+bool Indiana::move(Evenement e, bool& pickUp)
 {
-	;
+	Position oldPosition = position;
+	bool leave = false;
 	switch (e)
 	{
 	case EVHaut:
@@ -32,9 +34,21 @@ void Indiana::move(Evenement e)
 		if (verifieConditionDeplacement({ position.x + 1, position.y }))
 			++position.x;
 		break;
+	case EVQuitter:
+		leave = true;
+		break;
 	}
+	--nb_move;
+	pickUp = pickUpItem();
+	zeLab->moveCaracter(HERO, position, oldPosition);
+	return leave;
 }
 
-void Indiana::pickUpItem(){}
-void Indiana::paint(int image){ return; }
-void Indiana::loadImage(string image) { return; }
+bool Indiana::pickUpItem()
+{ 
+	if (zeLab->getGrille()[position.x].column[position.y] == zeLab->getImages().at(TORCH))
+	//return true;
+	//si cest une torch augmenter le champ de vision
+	//return true;
+	return false; 
+}

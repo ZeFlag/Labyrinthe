@@ -4,165 +4,100 @@
 #include <string>
 #include <fmod.hpp>
 #include "sdlclg.h"
+#include "Indiana.h"
 #include "constante.h"
-#include "AffichageFond.h"
-#include "FonctionDeVerification.h"
+#include "Labyrinthe.h"
 using namespace std;
+
+vector<FMOD::Sound*> loadSound(FMOD::System* system)
+{
+	using namespace FMOD;
+	Sound *sound1, *sound2, *sound3, *sound4, *sound5, *sound6;
+	vector<Sound*> v = vector<Sound*>(6);
+	v.push_back(sound1);
+	v.push_back(sound2);
+	v.push_back(sound3);
+	v.push_back(sound4);
+	v.push_back(sound5);
+	v.push_back(sound6);
+
+	system->init(32, FMOD_INIT_NORMAL, 0);
+
+	system->createSound("../zeMaze/menu.mp3", FMOD_HARDWARE, 0, &v.at(0));
+	system->createSound("../zeMaze/theme.mp3", FMOD_HARDWARE, 0, &v.at(1));
+	system->createSound("../zeMaze/victoire.mp3", FMOD_HARDWARE, 0, &v.at(2));
+	system->createSound("../zeMaze/perdu.mp3", FMOD_HARDWARE, 0, &v.at(3));
+	system->createSound("../zeMaze/pickup.mp3", FMOD_HARDWARE, 0, &v.at(4));
+	system->createSound("../zeMaze/start.wav", FMOD_HARDWARE, 0, &v.at(5));
+
+	return v;
+}
+
+void playSound(FMOD::System* system,FMOD::Sound* sound)
+{
+	system->playSound(FMOD_CHANNEL_FREE, sound, false, 0);
+}
+
+void releaseSound(FMOD::System* system, vector<FMOD::Sound*> sounds)
+{
+	for (size_t i = 0; i < 5; i++)
+		sounds.at(i)->release();
+
+	system->close();
+	system->release();
+}
 
 int main(int argc, char *argv[])
 {
+	bool victory = false;
+
 	srand(static_cast<unsigned int>(time(0)));
-	int CompteurPas = NOMBRE_PAS_MAX;
-	bool victoire = false;
-	Evenement e;
-
-	Ligne Grille[NOMBRE_CASES];                                                     //Déclaration de la grille de jeu.
-	InitialiserGrille(Grille);
-	InitialiserAffichage("zeMaze", TAILLE_IMAGE, TAILLE_IMAGE);              //Initialisation de la fenêtre
-
-	int title = ChargerImage("Title.bmp");
-	int fond = ChargerImage("fond.bmp");
-	int personnage = ChargerImage("indiana.bmp");
-	int mur = ChargerImage("mur.bmp");                                  //Chargement des images en mémoire
-	int torche = ChargerImage("torche.bmp");
-	int biere = ChargerImage("beer.bmp");
-	int gagne = ChargerImage("gagne.bmp");
-	int perdu = ChargerImage("perdu.bmp");
-	int porte = ChargerImage("door.bmp");
-	int black = ChargerImage("black.bmp");
-	
-
-	FMOD::System     *system;
-	FMOD::Sound      *sound1, *sound2, *sound3, *sound4, *sound5, *sound6;
-
-	FMOD::System_Create(&system);
-	system->init(32, FMOD_INIT_NORMAL, 0);                                                 //initialiser FMOD
-
-	system->createSound("../zeMaze/menu.mp3", FMOD_HARDWARE, 0, &sound1);
-	system->createSound("../zeMaze/theme.mp3", FMOD_HARDWARE, 0, &sound2);
-	system->createSound("../zeMaze/victoire.mp3", FMOD_HARDWARE, 0, &sound3);        //Charger les sons
-	system->createSound("../zeMaze/perdu.mp3", FMOD_HARDWARE, 0, &sound4);
-	system->createSound("../zeMaze/pickup.mp3", FMOD_HARDWARE, 0, &sound5);
-	system->createSound("../zeMaze/start.wav", FMOD_HARDWARE, 0, &sound6);
-
-	system->playSound(FMOD_CHANNEL_FREE, sound1, false, 0);
-
+	//Initialisation du labyrinthe
+	Labyrinthe zeLab;
+	//ouverture de la fenetre avec fond decran
+	InitialiserAffichage("zeMaze", SIZE_WINDOW, SIZE_WINDOW);
+	//initialisation de Indiana Jones
+	Indiana indianaJones(zeLab);
+	//Initialisation des sounds
+	FMOD::System *system;
+	System_Create(&system);
+	vector<FMOD::Sound*> sounds = loadSound(system);
+	playSound(system, sounds.at(0));
+	//Menu
+	zeLab.paintTitle();
+	while (AttendreEvenement() != EVEspace);
+	sounds.at(0)->release();
+	playSound(system, sounds.at(5));
+	sounds.at(5)->release();
+	zeLab.paint();
+	SDL_EnableKeyRepeat(100, 100);
+	playSound(system, sounds.at(1));
+	bool pickUp = false;
 	do
 	{
-		AfficherImage(title, 0, 0);
-		RafraichirFenetre();                                      //Boucle de l'écran titre
+		zeLab.repaint();
+		if (pickUp)
+			playSound(system, sounds.at(4));
+	} while (!indianaJones.move(AttendreEvenement(), pickUp));
+	SDL_EnableKeyRepeat(0, 0);      
+	sounds.at(1)->release();    
 
-		e = AttendreEvenement();
-	} while (e != EVEspace);
-
-	sound1->release();
-	system->playSound(FMOD_CHANNEL_FREE, sound6, false, 0);
-
-	GenererMaze(Grille, mur);											//Génère le labyrinthe aléatoirement
-	
-	PlacerObject(Grille, NOMBRE_TORCHES, torche);                               //Appel a la fonction pour placer les items
-	PlacerObject(Grille, NOMBRE_BIERES, biere);
-
-	Position posPersonnage;
-	posPersonnage = InitialiserPositionPersonnage(Grille, mur);
-	string ConditionMario = "Vivant";                                  //Déclaration et initialisation de la position des personnages
-
-	PlacerPorte(Grille, porte, posPersonnage);
-
-	SDL_EnableKeyRepeat(100, 100);                     //Lorsqu'on appuie sur une touche pendant un certain delai, l'action se répete plusieur fois
-
-	system->playSound(FMOD_CHANNEL_FREE, sound2, false, 0);
-
-	while (e != EVQuitter && !victoire && CompteurPas != 0)            //Boucle d'animation
+	if (victory)
 	{
-		Afficher(Grille, fond, mur, porte, torche, biere, black, personnage, posPersonnage);
-
-		string ConditionHaut = "Aucune";
-		string ConditionBas = "Aucune";
-		string ConditionGauche = "Aucune";                        //Déclaration des conditions
-		string ConditionDroite = "Aucune";
-		string ConditionLimite = "Aucune";
-
-		e = AttendreEvenement();                                        //Attendre que l'usager appuie sur une touche.
-
-		VerifierMur(Grille, mur, posPersonnage, ConditionHaut, ConditionBas, ConditionGauche, ConditionDroite);
-		VerifierLimiteJeu(posPersonnage, ConditionLimite);
-
-		if (e == EVHaut && ConditionHaut != "HautImpossible" && ConditionLimite != "HautImpossible")
-		{
-			posPersonnage.y -= 1;
-			--CompteurPas;
-		}
-
-		if (e == EVBas && ConditionBas != "BasImpossible" && ConditionLimite != "BasImpossible")
-		{
-			posPersonnage.y += 1;
-			--CompteurPas;
-		}
-
-		if (e == EVDroite && ConditionDroite != "DroiteImpossible" && ConditionLimite != "DroiteImpossible")
-		{
-			posPersonnage.x += 1;
-			--CompteurPas;
-		}
-
-		if (e == EVGauche && ConditionGauche != "GaucheImpossible" && ConditionLimite != "GaucheImpossible")
-		{
-			posPersonnage.x -= 1;
-			--CompteurPas;
-		}
-
-
-		if (VerifierObjetRamasser(Grille, torche, posPersonnage))  //Vérifie si une torche est a ramasser
-		{
-			system->playSound(FMOD_CHANNEL_FREE, sound5, false, 0);
-
-			//TODO: CHAMP_VISION += 3;
-			cout << "Champ de vison augmente!" << endl;
-
-		}
-			
-		if (VerifierObjetRamasser(Grille, biere, posPersonnage)) //Vérifie si une bière est a ramasser
-		{
-			system->playSound(FMOD_CHANNEL_FREE, sound5, false, 0);    
-
-			CompteurPas += NOMBRE_PAS_MAX-20;
-			cout << "Nombre de pas augmente!" << endl;
-		}
-			
-		cout << "Pas restant: " << CompteurPas << endl;
-		victoire = VerifierSortie(Grille, porte, posPersonnage);		//Vérifie si le personnage a trouvé la sortie
-	} 
-
-	SDL_EnableKeyRepeat(0, 0);                  //Désactivation de la répétition des touches (remise à 0)
-	sound2->release();
-
-	Afficher(Grille, fond, mur, porte, torche, biere, black, personnage, posPersonnage);
-
-	if (CompteurPas == 0)				//Si le joueur a perdu...
+		playSound(system, sounds.at(2));
+		AfficherImage(zeLab.getImages().at(WIN),120,190);
+		RafraichirFenetre();
+		Attendre(5000);
+	}
+	else
 	{
-		system->playSound(FMOD_CHANNEL_FREE, sound4, false, 0);
-		AfficherImage(perdu, 120, 190);           
+		playSound(system, sounds.at(3));
+		AfficherImage(zeLab.getImages().at(LOSS), 120, 190);
 		RafraichirFenetre();
 		Attendre(5000);
 	}
 
-	if (victoire)					  //Si le joueur a gagner...
-	{
-		system->playSound(FMOD_CHANNEL_FREE, sound3, false, 0);
-		AfficherImage(gagne, 120, 190);          
-		RafraichirFenetre();
-		Attendre(7000);
-	}
-
-	sound3->release();
-	sound4->release();
-	sound5->release();                     //Relachement des sons
-	sound6->release();
-	system->close();
-	system->release();
-
-	QuitterAffichage();                   //Fermeture de la fenetre SDL
+	releaseSound(system, sounds);
 
 	return 0;
 }
