@@ -5,12 +5,12 @@
 class Indiana :
 	public Personnage
 {
-	int nombre_pas;
+	int nb_move = 60;
 public:
 	Indiana(Labyrinthe& l);
 	~Indiana();
 
-	bool move(Evenement e);
+	bool move(Evenement e, bool& pickUp);
 	bool pickUpItem();
 };
 

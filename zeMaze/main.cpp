@@ -38,9 +38,18 @@ void playSound(FMOD::System* system,FMOD::Sound* sound)
 	system->playSound(FMOD_CHANNEL_FREE, sound, false, 0);
 }
 
+void releaseSound(FMOD::System* system, vector<FMOD::Sound*> sounds)
+{
+	for (size_t i = 0; i < 5; i++)
+		sounds.at(i)->release();
+
+	system->close();
+	system->release();
+}
+
 int main(int argc, char *argv[])
 {
-	int CompteurDeSou = 0;
+	bool victory = false;
 
 	srand(static_cast<unsigned int>(time(0)));
 	//Initialisation du labyrinthe
@@ -60,25 +69,35 @@ int main(int argc, char *argv[])
 	sounds.at(0)->release();
 	playSound(system, sounds.at(5));
 	sounds.at(5)->release();
-	//affiche le decors
 	zeLab.paint();
 	SDL_EnableKeyRepeat(100, 100);
 	playSound(system, sounds.at(1));
+	bool pickUp = false;
 	do
 	{
 		zeLab.repaint();
-		if (indianaJones.pickUpItem())
+		if (pickUp)
 			playSound(system, sounds.at(4));
-	} while (!indianaJones.move(AttendreEvenement()) && CompteurDeSou != NB_TORCHS);
-	//Désactivation de la répétition des touches (remise à 0)
+	} while (!indianaJones.move(AttendreEvenement(), pickUp));
 	SDL_EnableKeyRepeat(0, 0);      
 	sounds.at(1)->release();    
 
-	for (size_t i = 2; i < 5; i++)
-		sounds.at(i)->release();
+	if (victory)
+	{
+		playSound(system, sounds.at(2));
+		AfficherImage(zeLab.getImages().at(WIN),120,190);
+		RafraichirFenetre();
+		Attendre(5000);
+	}
+	else
+	{
+		playSound(system, sounds.at(3));
+		AfficherImage(zeLab.getImages().at(LOSS), 120, 190);
+		RafraichirFenetre();
+		Attendre(5000);
+	}
 
-	system->close();
-	system->release();
+	releaseSound(system, sounds);
 
 	return 0;
 }

@@ -12,7 +12,7 @@ Indiana::~Indiana()
 {
 }
 
-bool Indiana::move(Evenement e)
+bool Indiana::move(Evenement e, bool& pickUp)
 {
 	Position oldPosition = position;
 	bool leave = false;
@@ -38,14 +38,15 @@ bool Indiana::move(Evenement e)
 		leave = true;
 		break;
 	}
+	--nb_move;
+	pickUp = pickUpItem();
 	zeLab->moveCaracter(HERO, position, oldPosition);
 	return leave;
 }
 
-bool Indiana::pickUpItem()	//Todo
+bool Indiana::pickUpItem()
 { 
-	//verifier si la case ou il est est une torch ou une biere
-	//si cest une biere augmenter le nombre de pas
+	if (zeLab->getGrille()[position.x].column[position.y] == zeLab->getImages().at(TORCH))
 	//return true;
 	//si cest une torch augmenter le champ de vision
 	//return true;
