@@ -40,9 +40,8 @@ void playSound(FMOD::System* system,FMOD::Sound* sound)
 
 void releaseSound(FMOD::System* system, vector<FMOD::Sound*> sounds)
 {
-	for (size_t i = 0; i < 5; i++)
-		sounds.at(i)->release();
-
+	for (size_t i = 2; i < 4; i++)
+			sounds.at(i)->release();
 	system->close();
 	system->release();
 }
@@ -73,13 +72,13 @@ int main(int argc, char *argv[])
 	SDL_EnableKeyRepeat(100, 100);
 	playSound(system, sounds.at(1));
 	bool pickUp = false;
+	zeLab.paint();
 	do
 	{
-		zeLab.repaint();
 		indianaJones.showVision();
 		if (pickUp)
 			playSound(system, sounds.at(4));
-	} while (!indianaJones.move(AttendreEvenement(), pickUp));
+	} while (!indianaJones.move(AttendreEvenement(), pickUp, victory));
 	SDL_EnableKeyRepeat(0, 0);      
 	sounds.at(1)->release();    
 

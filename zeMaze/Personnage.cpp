@@ -4,12 +4,12 @@ bool Personnage::move(Evenement e) { return true; }
 
 bool Personnage::verifieConditionDeplacement(const Position& p) const
 {
-	return zeLab->getGrille()[p.x].column[p.y] != zeLab->getImages().at(WALL) && isInsideLimits(p);
+	return isInsideLimits(p) && zeLab->getGrille()[p.x].column[p.y] != zeLab->getImages().at(WALL);
 }
 
 bool Personnage::isInsideLimits(const Position& p) const 
 {
-	return p.x < NB_CASES && p.x > 0 && p.y < NB_CASES && p.y > 0;
+	return p.x < NB_CASES && p.x >= 0 && p.y < NB_CASES && p.y >= 0;
 }
 
 void Personnage::setLabyrinthe(Labyrinthe& l)
@@ -19,15 +19,13 @@ void Personnage::setLabyrinthe(Labyrinthe& l)
 
 Position Personnage::getStartPosition(const ImageName& imageName) const
 {
-	Position p = { -1,-1 };
-	for (Line line : zeLab->getGrille()){
-		p.y = -1;
-		++p.x;
-		for (ImageId imageId : line.column){
-			++p.y;
-			if (imageId == zeLab->getImages().at(imageName))
-				return p;
+	for (size_t x = 0; x < NB_CASES; x++)
+	{
+		for (size_t y = 0; y < NB_CASES; y++)
+		{
+			if (zeLab->getGrille()[x].column[y] == zeLab->getImages().at(imageName))
+				return{ x, y };
 		}
 	}
-	return p;
+	return { 17, 17 };
 }

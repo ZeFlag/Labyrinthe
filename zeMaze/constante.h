@@ -1,7 +1,7 @@
 #pragma once
 
 const int EMPTY_CASE = -1;
-const int VISION = 3;
+const int MIN_MOVE_ADD = 5;
 const int NB_TORCHS = 2;
 const int NB_BEERS = 3;
 const int NB_CASES = 18; 

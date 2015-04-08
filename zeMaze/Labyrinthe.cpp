@@ -57,6 +57,7 @@ void Labyrinthe::loadImages()
 {
 	images.insert(make_pair(BACKGROUND, ChargerImage("fond.bmp")));
 	images.insert(make_pair(BEER, ChargerImage("beer.bmp")));
+	images.insert(make_pair(BLACK, ChargerImage("black.bmp")));
 	images.insert(make_pair(DOOR, ChargerImage("door.bmp")));
 	images.insert(make_pair(HERO, ChargerImage("indiana.bmp")));
 	images.insert(make_pair(LOSS, ChargerImage("perdu.bmp")));

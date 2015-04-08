@@ -41,9 +41,6 @@
     <ClInclude Include="constante.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Item.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Personnage.h">
       <Filter>Header Files</Filter>
     </ClInclude>
