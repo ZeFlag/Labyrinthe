@@ -1,4 +1,3 @@
-#include <iostream>
 #include <cstdlib>
 #include <ctime>
 #include <string>
@@ -84,6 +83,7 @@ int main(int argc, char *argv[])
 
 	if (victory)
 	{
+		cout << "Bravo vous avez réussi!";
 		playSound(system, sounds.at(2));
 		AfficherImage(zeLab.getImages().at(WIN),120,190);
 		RafraichirFenetre();
@@ -91,6 +91,7 @@ int main(int argc, char *argv[])
 	}
 	else
 	{
+		cout << "Meilleur chance la procahine fois!";
 		playSound(system, sounds.at(3));
 		AfficherImage(zeLab.getImages().at(LOSS), 120, 190);
 		RafraichirFenetre();

@@ -31,9 +31,7 @@ struct Position
 		return *this;
 	}
 	const bool Position::operator != (const Position &p){
-		if (this != &p)
-			return true;
-		return x != p.x && y != p.y;
+		return x != p.x || y != p.y;
 	}
 };
 

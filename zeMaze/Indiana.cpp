@@ -49,6 +49,7 @@ bool Indiana::move(Evenement e, bool& pickUp, bool& victory)
 	if (position != oldPosition){
 		--nb_move;
 		pickUp = pickUpItem(victory);
+		std::cout << "Pas restant: " << nb_move << endl;
 		zeLab->moveCaracter(HERO, position, oldPosition);
 	}
 	return victory || leave || nb_move <= 0;
@@ -60,11 +61,14 @@ bool Indiana::pickUpItem(bool& victory)
 	if (image == zeLab->getImages().at(TORCH))
 	{
 		++vision;
+		std::cout << "Champ de vison augmente!" << endl;
 		return true;
 	}
 	else if (image == zeLab->getImages().at(BEER))
 	{
-		nb_move += rand() % (NB_CASES - MIN_MOVE_ADD) + MIN_MOVE_ADD;
+		int add = rand() % (NB_CASES - MIN_MOVE_ADD) + MIN_MOVE_ADD;
+		std::cout << "Nombre de pas augmente de " << add << "!" << endl;
+		nb_move += add;
 		return true;
 	}
 	else if (image == zeLab->getImages().at(DOOR))

@@ -1,5 +1,5 @@
 #pragma once
-
+#include <iostream>
 #include "Personnage.h"
 
 class Indiana :
