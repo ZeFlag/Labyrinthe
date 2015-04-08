@@ -4,11 +4,6 @@
 #include "constante.h"
 #include "Labyrinthe.h"
 
-enum Condition
-{
-	DROITE_IMPOSSIBLE, GAUCHE_IMPOSSIBLE, HAUT_IMPOSSIBLE, BAS_IMPOSSIBLE, SORTIE, AUCUN
-};
-
 class Personnage
 {
 protected:
