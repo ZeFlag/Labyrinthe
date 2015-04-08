@@ -79,21 +79,21 @@ bool Indiana::pickUpItem(bool& victory)
 void Indiana::showVision()
 {
 	AfficherImage(zeLab->getImages().at(BACKGROUND),0,0);
-	for (size_t x = 0; x < NB_CASES; ++x)
+	for (int x = 0; x < NB_CASES; ++x)
 	{
-		for (size_t y = 0; y < NB_CASES; ++y)
+		for (int y = 0; y < NB_CASES; ++y)
 		{
-			if (x >= position.x + vision || x <= position.x - vision && x >= 0 ||
-				y >= position.y + vision || y <= position.y - vision && y >= 0)
-			{
-				AfficherImage(zeLab->getImages().at(BLACK), x*NB_PIXELS_CASE, y*NB_PIXELS_CASE);
-			}
-			else
+			if (x < position.x + vision && x > position.x - vision &&
+				y < position.y + vision && y > position.y - vision)
 			{
 				if (zeLab->getGrille()[x].column[y] != -1)
 				{
 					AfficherImage(zeLab->getGrille()[x].column[y], x*NB_PIXELS_CASE, y*NB_PIXELS_CASE);
 				}
+			}
+			else
+			{
+				AfficherImage(zeLab->getImages().at(BLACK), x*NB_PIXELS_CASE, y*NB_PIXELS_CASE);
 			}
 		}
 	}

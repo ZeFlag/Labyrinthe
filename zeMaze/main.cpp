@@ -71,7 +71,6 @@ int main(int argc, char *argv[])
 	SDL_EnableKeyRepeat(100, 100);
 	playSound(system, sounds.at(1));
 	bool pickUp = false;
-	zeLab.paint();
 	do
 	{
 		indianaJones.showVision();
