@@ -41,7 +41,6 @@ typedef map<ImageName, ImageId> Map;
 
 class Labyrinthe
 {
-private:
 	Map images;
 	vector<Line> grille;
 	bool victory = false;
@@ -71,4 +70,12 @@ public:
 
 	const Labyrinthe & operator=(Labyrinthe&);
 	void Copy(Labyrinthe&);
+
+private:
+	//Pour la verifiaction de la solvabilite du labiyrinthe
+	Position startCase;
+	bool wasHere[NB_CASES][NB_CASES];
+	bool correctPath[NB_CASES][NB_CASES];
+
+	bool checkSolve(Position);
 };

@@ -75,14 +75,21 @@ void Labyrinthe::InitObjects()
 
 void Labyrinthe::InitDoor()
 {
+	auto solve = false;
 	auto i = 0, j = 0;
-	do
+	while (!solve) 
 	{
-		i = rand() % NB_CASES;
-		j = rand() % NB_CASES;
-	} while (grille[i].column[j] != EMPTY_CASE);
+		do
+		{
+			i = rand() % NB_CASES;
+			j = rand() % NB_CASES;
+		} while (grille[i].column[j] != EMPTY_CASE);
 
-	grille[i].column[j] = images.at(DOOR);
+		grille[i].column[j] = images.at(DOOR);
+		solve = checkSolve(startCase);
+		if (!solve)
+			grille[i].column[j] = EMPTY_CASE;
+	}
 }
 
 void Labyrinthe::PutObject(int nbObject, ImageId imageId)
@@ -120,19 +127,45 @@ void Labyrinthe::showResult(FMOD::System* system,vector<FMOD::Sound*> sounds) co
 
 void Labyrinthe::InitCaracters()
 {
-	Position Personnage;
 	do
 	{
-		Personnage.x = rand() % NB_CASES;
-		Personnage.y = rand() % NB_CASES;
-	} while (grille[Personnage.x].column[Personnage.y] != EMPTY_CASE);
-	grille[Personnage.x].column[Personnage.y] = images.at(HERO);
+		startCase.x = rand() % NB_CASES;
+		startCase.y = rand() % NB_CASES;
+	} while (grille[startCase.x].column[startCase.y] != EMPTY_CASE);
+	grille[startCase.x].column[startCase.y] = images.at(HERO);
 }
 
 void Labyrinthe::moveCaracter(const ImageName& name, const Position& p, const Position& oldPos)
 {
 	grille[oldPos.x].column[oldPos.y] = EMPTY_CASE;
 	grille[p.x].column[p.y] = images.at(name);
+}
+
+bool Labyrinthe::checkSolve(Position p) {
+	if (grille[p.x].column[p.y] == images.at(DOOR)) return true; 
+	if (grille[p.x].column[p.y] == images.at(WALL) || wasHere[p.x][p.y]) return false;
+	wasHere[p.x][p.y] = true;
+	if (p.x != 0)
+	if (checkSolve({ p.x - 1, p.y })) {
+		correctPath[p.x][p.y] = true;
+		return true;
+	}
+	if (p.x != NB_CASES - 1)
+	if (checkSolve({ p.x + 1, p.y })) {
+		correctPath[p.x][p.y] = true;
+		return true;
+	}
+	if (p.y != 0)
+	if (checkSolve({ p.x, p.y - 1 })) {
+		correctPath[p.x][p.y] = true;
+		return true;
+	}
+	if (p.y != NB_CASES - 1)
+	if (checkSolve({ p.x, p.y + 1 })) {
+		correctPath[p.x][p.y] = true;
+		return true;
+	}
+	return false;
 }
 
 void Labyrinthe::GenererMaze(ImageId imageId)
