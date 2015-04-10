@@ -4,6 +4,8 @@
 
 int main(int argc, char *argv[])
 {
+	const int KEY_REPEATER = 100;
+
 	srand(static_cast<unsigned int>(time(0)));
 	//Initialisation du labyrinthe
 	Labyrinthe* zeLab = new Labyrinthe;
@@ -22,7 +24,7 @@ int main(int argc, char *argv[])
 	sounds.at(0)->release();
 	playSound(system, sounds.at(5));
 	sounds.at(5)->release();
-	SDL_EnableKeyRepeat(100, 100);
+	SDL_EnableKeyRepeat(KEY_REPEATER, KEY_REPEATER);
 	playSound(system, sounds.at(1));
 	bool pickUp = false;
 	do
