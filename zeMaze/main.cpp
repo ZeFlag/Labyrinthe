@@ -4,7 +4,7 @@
 
 int main(int argc, char *argv[])
 {
-	const int KEY_REPEATER = 100;
+	const int KEY_REPEATER_MAX = 100;
 
 	srand(static_cast<unsigned int>(time(0)));
 	//Initialisation du labyrinthe
@@ -24,7 +24,7 @@ int main(int argc, char *argv[])
 	sounds.at(0)->release();
 	playSound(system, sounds.at(5));
 	sounds.at(5)->release();
-	SDL_EnableKeyRepeat(KEY_REPEATER, KEY_REPEATER);
+	SDL_EnableKeyRepeat(KEY_REPEATER_MAX, KEY_REPEATER_MAX);
 	playSound(system, sounds.at(1));
 	bool pickUp = false;
 	do
