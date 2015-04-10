@@ -7,10 +7,10 @@ class Indiana :
 	int nb_move = 100;
 	int vision = 3;
 public:
-	Indiana(Labyrinthe& l);
+	Indiana(Labyrinthe&);
 	~Indiana();
 
-	bool move(Evenement e, bool& pickUp) override;
+	bool move(Evenement, bool&) override;
 	void showVision();
 	bool pickUpItem();
 };

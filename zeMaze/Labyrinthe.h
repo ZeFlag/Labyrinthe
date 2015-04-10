@@ -46,11 +46,11 @@ private:
 	vector<Line> grille;
 	bool victory = false;
 
-	void GenererMaze(ImageId imageId);
+	void GenererMaze(ImageId);
 	void InitObjects();
 	void InitCaracters();
 	void InitDoor();
-	void PutObject(int nbObject, ImageId imageId);
+	void PutObject(int, ImageId);
 	void loadImages();
 	void paintObjects() const;
 public:
@@ -60,15 +60,15 @@ public:
 	void paint() const;
 	void paintTitle() const;
 	void repaint() const;
-	void showResult(FMOD::System* system, vector<FMOD::Sound*> sounds) const;
+	void showResult(FMOD::System*, vector<FMOD::Sound*>) const;
 
 	Map getImages() const { return images; }
 	vector<Line> getGrille() { return grille; };
 	bool isVictory() const { return victory; }
 
-	void moveCaracter(const ImageName& name, const Position& p, const Position& oldPos);
+	void moveCaracter(const ImageName&, const Position&, const Position&);
 	void setVictory(bool b) { victory = b; }
 
-	const Labyrinthe & operator=(Labyrinthe &newLab);
-	void Copy(Labyrinthe &newLab);
+	const Labyrinthe & operator=(Labyrinthe&);
+	void Copy(Labyrinthe&);
 };

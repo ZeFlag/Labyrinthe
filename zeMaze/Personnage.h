@@ -11,14 +11,14 @@ public:
 	Personnage(){}
 	virtual ~Personnage() = 0;
 
-	virtual bool move(Evenement e, bool& pickUp) = 0;
+	virtual bool move(Evenement, bool&) = 0;
 
 	Position getPosition() const { return position; }
-	Position getStartPosition(const ImageName& imageName) const;
+	Position getStartPosition(const ImageName&) const;
 
-	void setLabyrinthe(Labyrinthe& l);
+	void setLabyrinthe(Labyrinthe&);
 	void setPosition(const Position& p){ position = p; }
 protected:
-	bool verifieConditionDeplacement(const Position& p) const;
-	bool isInsideLimits(const Position& p) const;
+	bool verifieConditionDeplacement(const Position&) const;
+	bool isInsideLimits(const Position&) const;
 };
