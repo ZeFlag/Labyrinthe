@@ -1,7 +1,5 @@
 #include "Personnage.h"
 
-bool Personnage::move(Evenement e) { return true; }
-
 bool Personnage::verifieConditionDeplacement(const Position& p) const
 {
 	return isInsideLimits(p) && zeLab->getGrille()[p.x].column[p.y] != zeLab->getImages().at(WALL);

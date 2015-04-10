@@ -11,7 +11,7 @@ public:
 	Personnage(){}
 	~Personnage(){}
 
-	virtual bool move(Evenement e);
+	virtual bool move(Evenement e) = 0;
 
 	Position getPosition() const { return position; }
 	Position getStartPosition(const ImageName& imageName) const;
