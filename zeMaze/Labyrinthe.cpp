@@ -80,7 +80,7 @@ void Labyrinthe::InitDoor()
 	{
 		i = rand() % NB_CASES;
 		j = rand() % NB_CASES;
-	} while ((grille[i].column[j] == EMPTY_CASE)); //TODO: Ajouter condition pour un écart minimum...
+	} while (grille[i].column[j] != EMPTY_CASE);
 
 	grille[i].column[j] = images.at(DOOR);
 }

@@ -9,7 +9,7 @@ protected:
 	Position position;
 public:
 	Personnage(){}
-	virtual ~Personnage() = 0;
+	~Personnage(){}
 
 	virtual bool move(Evenement, bool&) = 0;
 
