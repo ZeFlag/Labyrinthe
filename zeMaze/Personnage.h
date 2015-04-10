@@ -1,15 +1,12 @@
 #pragma once
 
-#include "sdlclg.h";
-#include "constante.h"
 #include "Labyrinthe.h"
 
-class Personnage
+class  Personnage
 {
 protected:
 	Labyrinthe* zeLab;
 	Position position;
-	int visibilite;
 public:
 	Personnage(){}
 	~Personnage(){}

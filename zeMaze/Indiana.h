@@ -1,5 +1,4 @@
 #pragma once
-#include <iostream>
 #include "Personnage.h"
 
 class Indiana :
@@ -11,8 +10,8 @@ public:
 	Indiana(Labyrinthe& l);
 	~Indiana();
 
-	bool move(Evenement e, bool& pickUp, bool& victory);
+	bool move(Evenement e, bool& pickUp);
 	void showVision();
-	bool pickUpItem(bool& victory);
+	bool pickUpItem();
 };
 

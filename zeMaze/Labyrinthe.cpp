@@ -100,6 +100,24 @@ void Labyrinthe::PutObject(int nbObject, ImageId imageId)
 	}
 }
 
+void Labyrinthe::showResult(FMOD::System* system,vector<FMOD::Sound*> sounds) const
+{
+	if (victory)
+	{
+		cout << "Bravo vous avez réussi!";
+		playSound(system, sounds.at(2));
+		AfficherImage(images.at(WIN), 120, 190);
+	}
+	else
+	{
+		cout << "Meilleur chance la procahine fois!";
+		playSound(system, sounds.at(3));
+		AfficherImage(images.at(LOSS), 120, 190);
+	}
+	refresh();
+	Attendre(5000);
+}
+
 void Labyrinthe::InitCaracters()
 {
 	Position Personnage;

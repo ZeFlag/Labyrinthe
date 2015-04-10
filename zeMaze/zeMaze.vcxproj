@@ -89,6 +89,7 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Personnage.cpp" />
     <ClCompile Include="sdlclg.cpp" />
+    <ClCompile Include="Sounds.hpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="constante.h" />
